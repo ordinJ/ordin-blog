@@ -1,12 +1,9 @@
 # site_blog
 
 #### 项目介绍
-SpringBoot+thymeleaf+mysql+mybatis
-
+轻量级简洁个人博客系统
 #### 软件架构
-软件架构说明
-
-
+SpringBoot+thymeleaf+mysql+mybatis
 #### 安装教程
 
 1. xxxx
