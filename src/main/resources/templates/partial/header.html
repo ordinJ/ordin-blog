@@ -32,26 +32,21 @@
             <!--<img src="${logo_url')}" alt="${site_title()}"/>-->
         </a>
         <div class="navbar-menu">
-            <a href="${site_url('/archives')}">归档</a>
-            <a href="${site_url('/links')}">友链</a>
-            <a href="${site_url('/about')}">关于</a>
+            <a href="/archives">归档</a>
+            <a href="/page/links">友链</a>
+            <a href="/page/about">关于</a>
         </div>
-        <a href="${site_url('/find')}" class="navbar-search">
+        <a href="/search" class="navbar-search">
             <span class="icon-search"></span>
         </a>
 
         <div class="navbar-mobile-menu" onclick="">
             <span class="icon-menu cross"><span class="middle"></span></span>
             <ul>
-                <li><a href="${site_url('/archives')}">归档</a></li>
-                <li><a href="${site_url('/links')}">友链</a></li>
-                <li><a href="${site_url('/about')}">关于</a></li>
+                <li><a href="/archives">归档</a></li>
+                <li><a href="/page/links">友链</a></li>
+                <li><a href="/page/about">关于</a></li>
             </ul>
         </div>
     </div>
 </header>
-<script>
-    function goSearch(){
-        window.location.href= "";
-    }
-</script>
