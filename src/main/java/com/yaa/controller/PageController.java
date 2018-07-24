@@ -63,5 +63,9 @@ public class PageController {
         int a = 1/0;
         return a+"";
     }
+    @RequestMapping(value = "/install")
+    public String install(){
+        return "install";
+    }
 
 }
