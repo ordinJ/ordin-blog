@@ -36,6 +36,7 @@ public class LogAspect {
         logger.info("CLASS_METHOD : " + joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature
                 ().getName());
         logger.info("ARGS : " + Arrays.toString(joinPoint.getArgs()));
+        logger.info("——————————————————————————————————");
     }
 
     @AfterReturning("pointCut_()")
