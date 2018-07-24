@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-
 @Controller
 public class PageController {
 
@@ -57,6 +56,12 @@ public class PageController {
     @RequestMapping(value = "/getUser")
     public Users getUsers(){
         return userService.getUsers(3);
+    }
+
+    @RequestMapping(value = "/test500")
+    public String test500(){
+        int a = 1/0;
+        return a+"";
     }
 
 }
