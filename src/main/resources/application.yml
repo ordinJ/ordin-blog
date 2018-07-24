@@ -1,0 +1,45 @@
+server:
+  port: 8080
+
+spring:
+  profiles:
+    active: local
+#mybatis配置
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true  #按驼峰命名规则自动匹配到实体类上,不需要用别名
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.yaa.model
+
+---
+spring:
+   profiles: local
+   mvc:
+     favicon:
+        enabled: true   #网站默认图标
+   datasource:          #数据源
+     url: jdbc:mysql://localhost:3306/blog?useSSL=true&useUnicode=true&characterEncoding=UTF-8
+     username: root
+     password: 123456
+     driver-class-name: com.mysql.jdbc.Driver
+logging:
+  file: log/site.log
+blog:
+  filePath: D:/var/uploaded_files/
+
+
+---
+spring:
+   profiles: prod
+   mvc:
+       favicon:
+         enabled: false
+   datasource:
+        url: jdbc:mysql://localhost:3306/blog?useSSL=true&useUnicode=true&characterEncoding=UTF-8
+        username: root
+        password: yanghongbo
+        driver-class-name: com.mysql.jdbc.Driver
+logging:
+  file: opt/site.log
+blog:
+  filePath: /var/uploaded_files/

@@ -1,0 +1,22 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="partial/head::html"></head>
+<div th:include="partial/header::html" ></div>
+<div class="main-content page-page clearfix">
+    <div class="search-page">
+        <form role="search" onsubmit="return false;">
+            <span class="search-box">
+                <input type="text" id="search-inp" class="input" placeholder="搜索..." maxlength="30" autocomplete="off">
+                <button type="submit" class="spsubmit" onclick="search()"><i class="icon-search"></i></button>
+            </span>
+        </form>
+        <div class="search-tags">
+            <p>👇 The following tabs can help you!</p>
+            <a href="/search/SpringMVC" class="bg-white">SpringMVC(2)</a>
+            <a href="/search/SPRING" class="bg-white">SPRING(2)</a>
+            <a href="/search/Linux" class="bg-white">Linux(3)</a>
+            <!--<p> 暂时还没有记录哟 ! </p>-->
+            <div class="search-tags-hr bg-deepgrey"></div>
+        </div>
+    </div>
+</div>
+<div th:include="partial/footer::html" ></div>
