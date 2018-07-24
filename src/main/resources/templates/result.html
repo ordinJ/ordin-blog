@@ -1,0 +1,29 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<div th:include="partial/header::html" ></div>
+<div class="main-content common-page clearfix">
+    <div class="categorys-item">
+        <div class="common-title">
+            搜索：dsadsa
+        </div>
+        <!--<div class="post-list-item">没有找到内容,请换别的关键字进行检索</div>-->
+        <div class="post-lists">
+            <div class="post-lists-body">
+                <div class="post-list-item">
+                    <div class="post-list-item-container ">
+                        <div class="item-label ">
+                            <div class="item-title">
+                                <a href="${permalink()}">sadsa</a>
+                            </div>
+                            <div class="item-meta clearfix">
+                                <div class="item-meta-ico ${show_icon()}"
+                                     style="background: url(/img/bg-ico.png) no-repeat;background-size: 40px auto;"></div>
+                                <div class="item-meta-date">发布于2018-05-06 15:30:00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:include="partial/footer::html" ></div>

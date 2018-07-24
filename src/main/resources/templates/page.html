@@ -1,0 +1,13 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<div th:include="partial/header::html" ></div>
+<article class="main-content page-page">
+    <div class="post-header">
+        <h1 class="post-title" itemprop="name headline" th:text="${title}"></h1>
+        <div class="post-data">
+            <time datetime="${created('yyyy-MM-dd')}" itemprop="datePublished" th:text="'发布于：'+${created}"></time>
+        </div>
+    </div>
+    <div id="post-content" class="post-content">${show_content()}</div>
+</article>
+<div th:include="partial/comments::html" ></div>
+<div th:include="partial/footer::html" ></div>
