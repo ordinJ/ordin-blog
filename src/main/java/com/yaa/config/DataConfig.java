@@ -1,5 +1,6 @@
 package com.yaa.config;
 
+import com.yaa.extension.Commons;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.jdbc.ScriptRunner;
 import org.slf4j.Logger;

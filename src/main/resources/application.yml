@@ -18,9 +18,9 @@ spring:
      favicon:
         enabled: true   #网站默认图标
    datasource:          #数据源
-     url: jdbc:mysql://localhost:3306/blog?useSSL=false&useUnicode=true&characterEncoding=UTF-8
+     url: jdbc:mysql://localhost:3306/blog?useSSL=false&allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=UTF-8
      username: root
-     password: 123456
+     password: 12345678
      driver-class-name: com.mysql.jdbc.Driver
 logging:
   file: log/site.log
@@ -34,7 +34,7 @@ spring:
        favicon:
          enabled: false
    datasource:
-        url: jdbc:mysql://localhost:3306/blog?useSSL=false&useUnicode=true&characterEncoding=UTF-8
+        url: jdbc:mysql://localhost:3306/blog?useSSL=false&allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=UTF-8
         username: root
         password: yanghongbo
         driver-class-name: com.mysql.jdbc.Driver
