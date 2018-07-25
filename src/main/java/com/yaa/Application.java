@@ -6,9 +6,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 @MapperScan("com.yaa.mapper")
-public class SiteBlogApplication {
+public class Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SiteBlogApplication.class, args);
+		SpringApplication.run(Application.class, args);
 	}
 }

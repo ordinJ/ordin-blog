@@ -20,14 +20,13 @@ spring:
    datasource:          #数据源
      url: jdbc:mysql://localhost:3306/blog?useSSL=false&useUnicode=true&characterEncoding=UTF-8
      username: root
-     password: 12345678
+     password: 123456
      driver-class-name: com.mysql.jdbc.Driver
 logging:
   file: log/site.log
-blog:
+blog:   #自定义属性
   filePath: D:/var/uploaded_files/
-
-
+  database: blog
 ---
 spring:
    profiles: prod
@@ -41,5 +40,6 @@ spring:
         driver-class-name: com.mysql.jdbc.Driver
 logging:
   file: opt/site.log
-blog:
+blog:   #自定义属性
   filePath: /var/uploaded_files/
+  database: blog
