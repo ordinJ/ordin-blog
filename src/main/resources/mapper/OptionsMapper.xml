@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yaa.mapper.OptionsMapper" >
+  <resultMap id="BaseResultMap" type="com.yaa.model.Options" >
+    <result column="allow_install" property="allowInstall" jdbcType="VARCHAR" />
+    <result column="site_description" property="siteDescription" jdbcType="VARCHAR" />
+    <result column="site_keywords" property="siteKeywords" jdbcType="VARCHAR" />
+    <result column="site_theme" property="siteTheme" jdbcType="VARCHAR" />
+    <result column="site_title" property="siteTitle" jdbcType="VARCHAR" />
+    <result column="site_url" property="siteUrl" jdbcType="VARCHAR" />
+    <result column="social_github" property="socialGithub" jdbcType="VARCHAR" />
+    <result column="social_twitter" property="socialTwitter" jdbcType="VARCHAR" />
+    <result column="social_weibo" property="socialWeibo" jdbcType="VARCHAR" />
+    <result column="social_zhihu" property="socialZhihu" jdbcType="VARCHAR" />
+
+  </resultMap>
+  <sql id="Base_Column_List" >
+    allow_install, site_description, site_keywords, site_theme, site_title, site_url, social_github, social_twitter, social_weibo,
+    social_zhihu
+  </sql>
+</mapper>
