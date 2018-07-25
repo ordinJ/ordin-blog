@@ -18,7 +18,7 @@
                         <div class="item-title"><a href="/article/1">步步向上的一年</a>
                         </div>
                         <div class="item-meta clearfix">
-                            <div class="item-meta-ico ${show_icon()}"
+                            <div th:class="'item-meta-ico '+ ${commons.show_icon()}"
                                  th:style="'background: url('+@{/img/bg-ico.png}+') no-repeat;background-size: 40px auto;'"></div>
                             <div class="item-meta-cat">
                                 默认分类
@@ -29,7 +29,7 @@
             </div>
             <div class="post-list-item">
                 <div class="post-list-item-container">
-                    <div class="item-thumb bg-deepgrey" th:style="'background-image:url('+@{/img/rand/3.jpg}+');'"></div>
+                    <div class="item-thumb bg-deepgrey" th:style="'background-image:url('+@{/img/rand/2.jpg}+');'"></div>
                     <a href="/article/1">
                         <div class="item-desc">
                             <p> 2014年总结 2014年年初刚开始Android开发，虽说之前也断断续续地在学习Android，但是一直没有真刀实枪的干过，直到14年年初开始在公...</p>
