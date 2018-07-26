@@ -21,7 +21,12 @@ public class IndexController extends BaseController{
     @Autowired
     private ContentService contentService;
 
-    //首页
+    /**
+     * 首页
+     * @param request
+     * @param limit
+     * @return
+     */
     @RequestMapping(value = "/")
     public String indexPage(HttpServletRequest request,@RequestParam(value = "limit", defaultValue = "12") int limit){
         //是否初始化
