@@ -2,6 +2,9 @@ package com.yaa.service;
 
 import com.github.pagehelper.PageInfo;
 import com.yaa.model.Contents;
+import com.yaa.model.bo.ArchiveBo;
+
+import java.util.List;
 
 public interface ContentService {
 
@@ -9,6 +12,10 @@ public interface ContentService {
 
     Contents getContents(Integer cid);
 
+    Contents getContents(String slug);
+
     void updateContentByCid(Contents contents);
 
+    //文章归档
+    List<ArchiveBo> getArchives();
 }

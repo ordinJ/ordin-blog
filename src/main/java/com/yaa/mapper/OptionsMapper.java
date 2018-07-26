@@ -1,20 +1,36 @@
 package com.yaa.mapper;
 
-import com.yaa.model.Users;
-import org.springframework.stereotype.Repository;
+import com.yaa.model.Options;
+import com.yaa.model.vo.OptionsExample;
+import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
-@Repository
 public interface OptionsMapper {
+    int countByExample(OptionsExample example);
 
-    int deleteByPrimaryKey(Integer uid);
+    int deleteByExample(OptionsExample example);
 
-    int insert(Users record);
+    int deleteByPrimaryKey(String name);
 
-    int insertSelective(Users record);
+    int insert(Options record);
 
-    Users selectByPrimaryKey(Integer uid);
+    int insertSelective(Options record);
 
-    int updateByPrimaryKeySelective(Users record);
+    List<Options> selectByExampleWithBLOBs(OptionsExample example);
 
-    int updateByPrimaryKey(Users record);
+    List<Options> selectByExample(OptionsExample example);
+
+    Options selectByPrimaryKey(String name);
+
+    int updateByExampleSelective(@Param("record") Options record, @Param("example") OptionsExample example);
+
+    int updateByExampleWithBLOBs(@Param("record") Options record, @Param("example") OptionsExample example);
+
+    int updateByExample(@Param("record") Options record, @Param("example") OptionsExample example);
+
+    int updateByPrimaryKeySelective(Options record);
+
+    int updateByPrimaryKeyWithBLOBs(Options record);
+
+    int updateByPrimaryKey(Options record);
 }
