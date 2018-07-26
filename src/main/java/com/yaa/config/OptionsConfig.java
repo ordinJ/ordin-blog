@@ -19,7 +19,7 @@ public class OptionsConfig implements CommandLineRunner {
     private OptionsServer optionsServer;
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
         logger.info("initialize common options");
         WebConst.initConfig = optionsServer.getOptionsConfig();
     }
