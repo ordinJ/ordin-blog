@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta http-equiv="Cache-Control" content="no-transform"/>
 <meta http-equiv="Cache-Control" content="no-siteapp"/>
-<meta name="keywords" content="个人博客 技术博客"/>
-<meta name="description" content="更新个人技术 Java问题"/>
+<meta name="keywords" th:content="${commons.site_keywords()}"/>
+<meta name="description" th:content="${commons.site_description()}"/>
 <link rel="shortcut icon" th:href="@{/img/favicon.png}"/>
 <link rel="apple-touch-icon" th:href="@{/img/apple-touch-icon.png}"/>
-<title>yangxs</title>
+<title th:text="${title ?: '首页'}+' - '+${commons.site_title()}"></title>

@@ -33,6 +33,8 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
+		<emoji.version>3.2.0</emoji.version>
+		<commonmark.version>0.9.0</commonmark.version>
 	</properties>
 
 	<dependencies>
@@ -86,15 +88,38 @@
 			<version>1.2.31</version>
 		</dependency>
 		<!--&lt;!&ndash; 分页插件 &ndash;&gt;-->
-        <!--<dependency>-->
-            <!--<groupId>com.github.pagehelper</groupId>-->
-            <!--<artifactId>pagehelper-spring-boot-starter</artifactId>-->
-            <!--<version>1.1.2</version>-->
-        <!--</dependency>-->
+		<dependency>
+			<groupId>com.github.pagehelper</groupId>
+			<artifactId>pagehelper-spring-boot-starter</artifactId>
+			<version>1.2.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.6</version>
+		</dependency>
+		<!--过滤 emoji 字符-->
+		<dependency>
+			<groupId>com.vdurmont</groupId>
+			<artifactId>emoji-java</artifactId>
+			<version>${emoji.version}</version>
+		</dependency>
+		<!--markdown处理-->
+		<dependency>
+			<groupId>com.atlassian.commonmark</groupId>
+			<artifactId>commonmark</artifactId>
+			<version>${commonmark.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.atlassian.commonmark</groupId>
+			<artifactId>commonmark-ext-gfm-tables</artifactId>
+			<version>${commonmark.version}</version>
+		</dependency>
 	</dependencies>
 
 	<build>
 		<plugins>
+			<!--打包Jar-->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
@@ -113,6 +138,7 @@
 					</archive>
 				</configuration>
 			</plugin>
+			<!--Spring Boot热部署插件-->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
@@ -120,6 +146,7 @@
 					<!--<fork>true</fork>-->
 				<!--</configuration>-->
 			</plugin>
+			<!--自动生成代码插件-->
             <plugin>
                 <groupId>org.mybatis.generator</groupId>
                 <artifactId>mybatis-generator-maven-plugin</artifactId>
