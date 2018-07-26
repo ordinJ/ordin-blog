@@ -75,6 +75,6 @@ public class ContentServiceImpl implements ContentService {
                 archive.setArticles(contentss);
             });
         }
-        return null;
+        return archives;
     }
 }
