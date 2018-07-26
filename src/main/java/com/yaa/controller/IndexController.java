@@ -127,6 +127,12 @@ public class IndexController extends BaseController{
         return this.render("search");
     }
 
+    /**
+     * 搜索结果页
+     * @param request
+     * @param keyword
+     * @return
+     */
     @RequestMapping(value = "/search/{keyword}")
     public String search(HttpServletRequest request,@PathVariable String keyword){
 
