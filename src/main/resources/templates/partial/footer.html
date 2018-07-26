@@ -190,6 +190,12 @@
             }
         }
     });
+
+    $('.spsubmit').click(function(){
+        var q = $('#search-inp').val();
+        window.location.href = '/search/' + q;
+    });
+
     /*]]>*/
 </script>
 <script data-no-instant="">

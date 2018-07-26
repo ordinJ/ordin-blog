@@ -4,8 +4,11 @@ import com.github.pagehelper.PageInfo;
 import com.yaa.constant.WebConst;
 import com.yaa.controller.base.BaseController;
 import com.yaa.model.Contents;
+import com.yaa.model.Metas;
 import com.yaa.model.bo.ArchiveBo;
 import com.yaa.service.ContentService;
+import com.yaa.service.MetasService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +23,8 @@ public class IndexController extends BaseController{
 
     @Autowired
     private ContentService contentService;
+    @Autowired
+    private MetasService metasService;
 
     /**
      * 首页
@@ -108,6 +113,27 @@ public class IndexController extends BaseController{
         this.title(request,"文章归档");
         return this.render("archives");
     }
+
+    /**
+     * 搜索页
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "/search")
+    public String search(HttpServletRequest request){
+        List<Metas> metas = metasService.getAllMetas();
+        this.title(request,"搜索");
+        request.setAttribute("metas",metas);
+        return this.render("search");
+    }
+
+    @RequestMapping(value = "/search/{keyword}")
+    public String search(HttpServletRequest request,@PathVariable String keyword){
+
+        this.title(request,keyword);
+        return this.render("result");
+    }
+
 
     /**
      * 更新文章的点击率
