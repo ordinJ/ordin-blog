@@ -71,8 +71,8 @@ public class ContentServiceImpl implements ContentService {
                 int end = DateKit.getUnixTimeByDate(DateKit.dateAdd(DateKit.INTERVAL_MONTH, sd, 1)) - 1;
                 criteria.andCreatedGreaterThan(start);
                 criteria.andCreatedLessThan(end);
-                List<Contents> contentss = contentsMapper.selectByExample(example);
-                archive.setArticles(contentss);
+                List<Contents> contents = contentsMapper.selectByExample(example);
+                archive.setArticles(contents);
             });
         }
         return archives;
