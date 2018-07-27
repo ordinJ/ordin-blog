@@ -1,11 +1,11 @@
 package com.yaa.service;
 
-import com.yaa.model.Metas;
+import com.yaa.model.bo.MetasBo;
 
 import java.util.List;
 
 public interface MetasService {
 
-    List<Metas> getAllMetas();
+    List<MetasBo> getAllMetas();
 
 }

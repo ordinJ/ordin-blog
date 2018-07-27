@@ -6,6 +6,7 @@ import com.yaa.controller.base.BaseController;
 import com.yaa.model.Contents;
 import com.yaa.model.Metas;
 import com.yaa.model.bo.ArchiveBo;
+import com.yaa.model.bo.MetasBo;
 import com.yaa.service.ContentService;
 import com.yaa.service.MetasService;
 import org.apache.commons.lang3.StringUtils;
@@ -121,22 +122,42 @@ public class IndexController extends BaseController{
      */
     @RequestMapping(value = "/search")
     public String search(HttpServletRequest request){
-        List<Metas> metas = metasService.getAllMetas();
+        List<MetasBo> metas = metasService.getAllMetas();
         this.title(request,"搜索");
         request.setAttribute("metas",metas);
         return this.render("search");
     }
 
     /**
-     * 搜索结果页
+     * 搜索文章
      * @param request
      * @param keyword
      * @return
      */
     @RequestMapping(value = "/search/{keyword}")
     public String search(HttpServletRequest request,@PathVariable String keyword){
-
+        List<Contents> articles = contentService.getContentsByKeyword(keyword);
         this.title(request,keyword);
+        request.setAttribute("type","关键字");
+        request.setAttribute("key",keyword);
+        request.setAttribute("articles",articles);
+        this.title(request,keyword);
+        return this.render("result");
+    }
+
+    /**
+     * 标签搜索
+     * @param request
+     * @param name
+     * @return
+     */
+    @RequestMapping(value = "/tag/{name}")
+    public String searchTag(HttpServletRequest request,@PathVariable String name){
+        List<Contents> articles = contentService.getContentsByTags(name);
+        request.setAttribute("type","标签");
+        request.setAttribute("key",name);
+        request.setAttribute("articles",articles);
+        this.title(request,name);
         return this.render("result");
     }
 

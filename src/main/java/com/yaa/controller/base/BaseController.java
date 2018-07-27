@@ -11,8 +11,6 @@ public class BaseController {
 
     protected MapCache cache = MapCache.single();
 
-
-
     public static String THEME = "themes/default";
 
     public String render(String viewName) {

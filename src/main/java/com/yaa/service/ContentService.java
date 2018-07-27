@@ -16,6 +16,10 @@ public interface ContentService {
 
     void updateContentByCid(Contents contents);
 
+    List<Contents> getContentsByKeyword(String keyword);
+
+    List<Contents> getContentsByTags(String tag);
+
     //文章归档
     List<ArchiveBo> getArchives();
 }

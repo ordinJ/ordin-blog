@@ -12,10 +12,10 @@
         <div class="search-tags">
             <p>👇 The following tabs can help you!</p>
             <th:block th:each="meta : ${metas}">
-                <a href="/search/SpringMVC" class="bg-white" th:text="${meta.name}">(2)</a>
+                <a th:href="${commons.site_url('/tag/')}+${meta.metas.name}" class="bg-white" th:text="${meta.metas.name}+'('+${meta.count}+')'"></a>
             </th:block>
-            <!--<p> 暂时还没有记录哟 ! </p>-->
             <div class="search-tags-hr bg-deepgrey"></div>
+            <p th:if="${metas}==null">暂时还没有记录哟!</p>
         </div>
     </div>
 </div>

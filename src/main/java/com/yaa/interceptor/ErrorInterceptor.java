@@ -1,5 +1,6 @@
 package com.yaa.interceptor;
 
+import com.yaa.constant.WebConst;
 import com.yaa.extension.Commons;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,7 +31,9 @@ public class ErrorInterceptor implements HandlerInterceptor {
                            ModelAndView modelAndView) {
          if (errorCodeList.contains(response.getStatus())) {
             logger.info("请求出错,状态码："+response.getStatus());
-            modelAndView.setViewName("/comm/error_" + response.getStatus());
+            if(modelAndView!=null) {
+                modelAndView.setViewName("/comm/error_" + response.getStatus());
+            }
         }else{
             request.setAttribute("commons",commons);
         }

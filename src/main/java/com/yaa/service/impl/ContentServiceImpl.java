@@ -58,6 +58,23 @@ public class ContentServiceImpl implements ContentService {
     }
 
     @Override
+    public List<Contents> getContentsByKeyword(String keyword) {
+        ContentsExample example = new ContentsExample();
+        example.createCriteria().andTitleLike("%"+keyword+"%");
+        example.setOrderByClause("created desc");
+        return contentsMapper.selectByExampleWithBLOBs(example);
+    }
+
+    @Override
+    public List<Contents> getContentsByTags(String tag) {
+        ContentsExample example = new ContentsExample();
+        example.createCriteria().andStatusEqualTo(Types.PUBLISH.getType()).andTypeEqualTo(Types.ARTICLE.getType())
+                .andTagsLike("%"+tag+"%");
+        example.setOrderByClause("created desc");
+        return contentsMapper.selectByExampleWithBLOBs(example);
+    }
+
+    @Override
     public List<ArchiveBo> getArchives() {
         List<ArchiveBo> archives = contentsMapper.findReturnArchiveBo();
         if (null != archives) {
