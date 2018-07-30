@@ -1,12 +1,6 @@
-server:
-  port: 443
-  ssl:
-    key-store: classpath:ssl/1534728933823.pfx
-    key-store-password: 1534728933823
-    key-store-type: PKCS12
 spring:
   profiles:
-    active: prod
+    active: local
 #mybatis配置
 mybatis:
   configuration:
@@ -25,6 +19,8 @@ spring:
      username: root
      password: 123456
      driver-class-name: com.mysql.jdbc.Driver
+server:
+  port: 8080
 logging:
   file: log/site.log
 blog:   #自定义属性
@@ -41,6 +37,12 @@ spring:
         username: root
         password: Mysql2018!@#$
         driver-class-name: com.mysql.jdbc.Driver
+server:
+  port: 443
+  ssl:
+    key-store: classpath:ssl/1534728933823.pfx
+    key-store-password: 1534728933823
+    key-store-type: PKCS12
 logging:
   file: opt/site.log
 blog:   #自定义属性
