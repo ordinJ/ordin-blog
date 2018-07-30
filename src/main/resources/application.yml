@@ -1,9 +1,12 @@
 server:
-  port: 8080
-
+  port: 443
+  ssl:
+    key-store: classpath:ssl/1534728933823.pfx
+    key-store-password: 1534728933823
+    key-store-type: PKCS12
 spring:
   profiles:
-    active: local
+    active: prod
 #mybatis配置
 mybatis:
   configuration:
@@ -34,9 +37,9 @@ spring:
        favicon:
          enabled: false
    datasource:
-        url: jdbc:mysql://localhost:3306/blog?useSSL=false&allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=UTF-8
+        url: jdbc:mysql://47.75.166.206:3306/blog?useSSL=false&allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=UTF-8
         username: root
-        password: yanghongbo
+        password: Mysql2018!@#$
         driver-class-name: com.mysql.jdbc.Driver
 logging:
   file: opt/site.log
