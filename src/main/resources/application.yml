@@ -44,7 +44,7 @@ server:
     key-store-password: 1534728933823
     key-store-type: PKCS12
 logging:
-  file: opt/site.log
+  file: /opt/blog/log/site.log
 blog:   #自定义属性
   filePath: /var/uploaded_files/
   database: blog
