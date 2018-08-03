@@ -1,6 +1,7 @@
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="partial/head::html"></head>
-<div th:replace="partial/header::html" ></div>
+<body>
+<div th:replace="partial/header::header" ></div>
 <div class="main-content page-page clearfix">
     <div class="search-page">
         <form role="search" onsubmit="return false;">
@@ -19,4 +20,6 @@
         </div>
     </div>
 </div>
-<div th:replace="partial/footer::html" ></div>
+</body>
+<div th:replace="partial/footer::footer" ></div>
+</html>

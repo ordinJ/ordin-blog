@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="comments">
 <div th:if="${article}!=null">
     <div th:id="${article.cid ?: 0}" class="comment-container">
         <div id="comments" class="clearfix">

@@ -1,6 +1,7 @@
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="partial/head::html"></head>
-<div th:replace="partial/header::html" ></div>
+<div th:replace="partial/header::header" ></div>
+<body>
 <div class="main-content archive-page clearfix">
     <div class="categorys-item">
         <th:block th:each="archive : ${archives}">
@@ -26,4 +27,6 @@
         </th:block>
     </div>
 </div>
+</body>
 <div th:replace="partial/footer::html" ></div>
+</html>

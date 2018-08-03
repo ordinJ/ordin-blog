@@ -1,6 +1,7 @@
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="partial/head::html"></head>
-<div th:replace="partial/header::html" ></div>
+<div th:replace="partial/header::header" ></div>
+<body>
 <div class="main-content common-page clearfix">
     <div class="categorys-item">
         <div class="common-title">
@@ -36,4 +37,6 @@
         </th:block>
     </div>
 </div>
-<div th:replace="partial/footer::html" ></div>
+</body>
+<div th:replace="partial/footer::footer" ></div>
+</html>

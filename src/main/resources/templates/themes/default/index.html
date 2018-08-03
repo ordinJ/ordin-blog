@@ -1,7 +1,7 @@
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="partial/head::html"></head>
-<body class="bg-grey">
-<div th:replace="partial/header::html"></div>
+<div th:replace="partial/header::header"></div>
+<body>
 <div class="main-content index-page clearfix">
     <div class="post-lists">
         <div class="post-lists-body">
@@ -34,5 +34,6 @@
         <div th:replace="comm/macros::pageNav(${articles},'←','→','page')"></div>
     </div>
 </div>
-<div th:replace="partial/footer::html" ></div>
 </body>
+<div th:replace="partial/footer::footer" ></div>
+</html>
