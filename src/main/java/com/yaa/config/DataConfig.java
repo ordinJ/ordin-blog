@@ -28,10 +28,10 @@ public class DataConfig implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        // 建立连接
+        Connection conn = dataSource.getConnection();
         try {
             String sql = "select count(*) from information_schema.tables where table_schema='"+pathConfig.getDatabase()+"'";
-            // 建立连接
-            Connection conn = dataSource.getConnection();
             Statement statement = conn.createStatement();
             ResultSet rs = statement.executeQuery(sql);
             int count = 0;
@@ -47,9 +47,10 @@ public class DataConfig implements CommandLineRunner {
                 runner.runScript(Resources.getResourceAsReader("db/schema.sql"));
                 logger.info("initialize import database finished");
             }
-            conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            conn.close();
         }
     }
 
