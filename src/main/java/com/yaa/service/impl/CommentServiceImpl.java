@@ -68,6 +68,14 @@ public class CommentServiceImpl implements CommentService {
         return count;
     }
 
+    @Override
+    public List<Comments> recentComments(Integer limit) {
+        PageHelper.startPage(1,limit);
+        CommentsExample example =new CommentsExample();
+        example.setOrderByClause("created desc");
+        return commentsMapper.selectByExampleWithBLOBs(example);
+    }
+
     /**
      * copy原有的分页信息，除数据
      * 返回格式不同，所以需要把父级的分页信息copy

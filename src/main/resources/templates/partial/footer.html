@@ -4,15 +4,14 @@
 <footer id="footer" class="footer bg-white">
     <div class="footer-social">
         <div class="footer-container clearfix">
-            <div th:replace="partial/social::html" ></div>
+            <div th:replace="partial/social::social" ></div>
         </div>
     </div>
     <div class="footer-meta">
         <div class="footer-container">
             <div class="meta-item meta-copyright">
                 <div class="meta-copyright-info">
-                    <a href="https://tale.biezhi.me" class="info-logo">
-                    </a>
+                    <!--<a th:href="${commons.site_url()}" class="info-logo"></a>-->
                     <div class="info-text">
                         <p id="yangxs"></p>
                         <p>Powered by
@@ -24,29 +23,22 @@
 
             <div class="meta-item meta-posts">
                 <h3 class="meta-title">最新文章</h3>
-                <li>
-                    <a href="https://tale.biezhi.me/article/15">最近听的歌</a>
-                </li>
-                <li>
-                    <a href="https://tale.biezhi.me/article/14">步步向上的一年</a>
-                </li>
-                <li>
-                    <a href="https://tale.biezhi.me/article/13">压抑的一年</a>
-                </li>
+                <th:block th:each="article : ${commons.recent_articles(5)}">
+                    <li>
+                        <a th:href="${commons.permalink(article)}" th:text="${article.title}"></a>
+                    </li>
+                </th:block>
             </div>
 
             <div class="meta-item meta-comments">
                 <h3 class="meta-title">最新评论</h3>
-                <li>
-                    <a href="">
-                        jm：来学习的，借鉴模板
-                    </a>
-                </li>
-                <li>
-                    <a href="">
-                        民：我再看看吧
-                    </a>
-                </li>
+                <th:block th:each="comment : ${commons.recent_comments(5)}">
+                    <li>
+                        <a th:href="${commons.site_url('/article/')}+${comment.cid}+'#comment-'+${comment.coid}">
+                            <th:block th:text="${comment.author}+':'+${comment.content}"></th:block>
+                        </a>
+                    </li>
+                </th:block>
             </div>
         </div>
     </div>

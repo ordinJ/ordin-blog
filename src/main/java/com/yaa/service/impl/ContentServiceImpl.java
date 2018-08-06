@@ -98,6 +98,7 @@ public class ContentServiceImpl implements ContentService {
 
     @Override
     public Contents getNhContent(String type, Integer created) {
+        PageHelper.startPage(1, 1);
         ContentsExample example = new ContentsExample();
         Criteria criteria = example.createCriteria();
         criteria.andTypeEqualTo(Types.ARTICLE.getType()).andStatusEqualTo(Types.PUBLISH.getType());
@@ -114,5 +115,15 @@ public class ContentServiceImpl implements ContentService {
             return contents.get(0);
         }
         return null;
+    }
+
+    @Override
+    public List<Contents> getNewContents(Integer limit) {
+        PageHelper.startPage(1, limit);
+        ContentsExample example = new ContentsExample();
+        example.createCriteria().andStatusEqualTo(Types.PUBLISH.getType()).andTypeEqualTo(Types.ARTICLE.getType());
+        example.setOrderByClause("created desc");
+        List<Contents> contents = contentsMapper.selectByExample(example);
+        return contents;
     }
 }

@@ -4,6 +4,8 @@ import com.github.pagehelper.PageInfo;
 import com.yaa.model.Comments;
 import com.yaa.model.bo.CommentBo;
 
+import java.util.List;
+
 public interface CommentService {
 
     PageInfo<CommentBo> getComments(Integer cid, int page, int limit);
@@ -11,5 +13,7 @@ public interface CommentService {
     Comments getComments(Integer coid);
 
     int insertComments(Comments comments);
+
+    List<Comments> recentComments(Integer limit);
 
 }

@@ -25,4 +25,6 @@ public interface ContentService {
     List<ArchiveBo> getArchives();
 
     Contents getNhContent(String type, Integer created);
+
+    List<Contents> getNewContents(Integer limit);
 }

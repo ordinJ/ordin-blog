@@ -13,6 +13,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.List;
 
 
 /**
@@ -307,13 +308,35 @@ public final class Commons {
         return "";
     }
 
+    /**
+     * 最新文章
+     *
+     * @param limit
+     * @return
+     */
+    public static List<Contents> recent_articles(Integer limit) {
+        List<Contents> contents = WebConst.contentService.getNewContents(limit);
+        return contents;
+    }
+
+    /**
+     * 最新评论
+     *
+     * @param limit
+     * @return
+     */
+    public static List<Comments> recent_comments(int limit) {
+        List<Comments> comments = WebConst.commentService.recentComments(limit);
+        return comments;
+    }
+
 
     /**
      * 获取当前文章的上一篇
      *
      * @return
      */
-    public static Contents article_prev(Integer cid) {
+    private static Contents article_prev(Integer cid) {
         Contents cur = WebConst.contentService.getContents(cid);
         return null != cur ? WebConst.contentService.getNhContent(Types.PREV.getType(), cur.getCreated()) : null;
     }
@@ -323,7 +346,7 @@ public final class Commons {
      *
      * @return
      */
-    public static Contents article_next(Integer cid) {
+    private static Contents article_next(Integer cid) {
         Contents cur = WebConst.contentService.getContents(cid);
         return null != cur ? WebConst.contentService.getNhContent(Types.NEXT.getType(), cur.getCreated()) : null;
     }
