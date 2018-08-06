@@ -97,14 +97,7 @@ public class IndexController extends BaseController{
         if (null == contents || "draft".equals(contents.getStatus())) {
             return this.render404();
         }
-        if (contents.getAllowComment()) {
-            String cp = request.getParameter("cp");
-            if (StringUtils.isBlank(cp)) {
-                cp = "1";
-            }
-            PageInfo<CommentBo> comments = commentService.getComments(contents.getCid(), Integer.parseInt(cp), 6);
-            request.setAttribute("comments", comments);
-        }
+        completeArticle(request,contents);
         request.setAttribute("article", contents);
         request.setAttribute("is_post", false);
         this.title(request,contents.getTitle());
