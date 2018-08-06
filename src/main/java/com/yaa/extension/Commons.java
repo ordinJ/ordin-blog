@@ -3,6 +3,7 @@ package com.yaa.extension;
 
 import com.vdurmont.emoji.EmojiParser;
 import com.yaa.constant.WebConst;
+import com.yaa.dto.Types;
 import com.yaa.model.Comments;
 import com.yaa.model.Contents;
 import com.yaa.util.BlogUtils;
@@ -278,6 +279,53 @@ public final class Commons {
             return "@" + comments.getAuthor();
         }
         return "";
+    }
+
+    /**
+     * 当前文章的上一篇文章链接
+     *
+     * @return
+     */
+    public static String thePrev(Integer cid) {
+        Contents contents = article_prev(cid);
+        if (null != contents) {
+            return permalink(contents);
+        }
+        return "";
+    }
+
+    /**
+     * 当前文章的下一篇文章链接
+     *
+     * @return
+     */
+    public static String theNext(Integer cid) {
+        Contents contents = article_next(cid);
+        if (null != contents) {
+            return permalink(contents);
+        }
+        return "";
+    }
+
+
+    /**
+     * 获取当前文章的上一篇
+     *
+     * @return
+     */
+    public static Contents article_prev(Integer cid) {
+        Contents cur = WebConst.contentService.getContents(cid);
+        return null != cur ? WebConst.contentService.getNhContent(Types.PREV.getType(), cur.getCreated()) : null;
+    }
+
+    /**
+     * 获取当前文章的下一篇
+     *
+     * @return
+     */
+    public static Contents article_next(Integer cid) {
+        Contents cur = WebConst.contentService.getContents(cid);
+        return null != cur ? WebConst.contentService.getNhContent(Types.NEXT.getType(), cur.getCreated()) : null;
     }
 
 }

@@ -1,6 +1,7 @@
 package com.yaa.service;
 
 import com.github.pagehelper.PageInfo;
+import com.yaa.model.Comments;
 import com.yaa.model.Contents;
 import com.yaa.model.bo.ArchiveBo;
 
@@ -22,4 +23,6 @@ public interface ContentService {
 
     //文章归档
     List<ArchiveBo> getArchives();
+
+    Contents getNhContent(String type, Integer created);
 }

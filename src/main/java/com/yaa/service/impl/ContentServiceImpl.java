@@ -7,6 +7,7 @@ import com.yaa.mapper.ContentsMapper;
 import com.yaa.model.Contents;
 import com.yaa.model.bo.ArchiveBo;
 import com.yaa.model.vo.ContentsExample;
+import com.yaa.model.vo.ContentsExample.Criteria;
 import com.yaa.service.ContentService;
 import com.yaa.util.DateKit;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -93,5 +94,25 @@ public class ContentServiceImpl implements ContentService {
             });
         }
         return archives;
+    }
+
+    @Override
+    public Contents getNhContent(String type, Integer created) {
+        ContentsExample example = new ContentsExample();
+        Criteria criteria = example.createCriteria();
+        criteria.andTypeEqualTo(Types.ARTICLE.getType()).andStatusEqualTo(Types.PUBLISH.getType());
+        if (Types.NEXT.getType().equals(type)) {
+            criteria.andCreatedGreaterThan(created);
+            example.setOrderByClause("created asc");
+        }
+        if (Types.PREV.getType().equals(type)) {
+            criteria.andCreatedLessThan(created);
+            example.setOrderByClause("created desc");
+        }
+        List<Contents> contents = contentsMapper.selectByExampleWithBLOBs(example);
+        if(contents.size()>0){
+            return contents.get(0);
+        }
+        return null;
     }
 }
