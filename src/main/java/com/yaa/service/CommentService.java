@@ -10,4 +10,6 @@ public interface CommentService {
 
     Comments getComments(Integer coid);
 
+    int insertComments(Comments comments);
+
 }

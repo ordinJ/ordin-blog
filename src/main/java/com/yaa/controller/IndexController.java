@@ -1,29 +1,39 @@
 package com.yaa.controller;
 
 import com.github.pagehelper.PageInfo;
+import com.vdurmont.emoji.EmojiParser;
 import com.yaa.constant.WebConst;
 import com.yaa.controller.base.BaseController;
+import com.yaa.dto.ErrorCode;
+import com.yaa.dto.Types;
 import com.yaa.model.Comments;
 import com.yaa.model.Contents;
-import com.yaa.model.Metas;
 import com.yaa.model.bo.ArchiveBo;
 import com.yaa.model.bo.CommentBo;
 import com.yaa.model.bo.MetasBo;
+import com.yaa.model.bo.ResponseBo;
 import com.yaa.service.CommentService;
 import com.yaa.service.ContentService;
 import com.yaa.service.MetasService;
+import com.yaa.util.BlogUtils;
+import com.yaa.util.DateKit;
+import com.yaa.util.IPUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.net.URLEncoder;
 import java.util.List;
 
 @Controller
 public class IndexController extends BaseController{
+
+    private Logger logger = LoggerFactory.getLogger(IndexController.class);
 
     @Autowired
     private ContentService contentService;
@@ -161,6 +171,70 @@ public class IndexController extends BaseController{
         request.setAttribute("articles",articles);
         this.title(request,name);
         return this.render("result");
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/comment",method = RequestMethod.POST)
+    public ResponseBo comment(HttpServletRequest request, HttpServletResponse response,Comments comments) {
+        if (comments == null) {
+            return ResponseBo.fail("请输入完整后评论");
+        }
+        String ref = request.getHeader("Referer");
+        if (StringUtils.isBlank(ref)) {
+            return ResponseBo.fail(ErrorCode.BAD_REQUEST);
+        }
+        if (comments.getCoid() != null) {
+            comments.setParent(comments.getCoid());
+        }
+        if(StringUtils.isBlank(comments.getAuthor())){
+            return ResponseBo.fail("姓名不能为空");
+        }
+        if (comments.getAuthor().length() > 12) {
+            return ResponseBo.fail("姓名不能超过12个字符");
+        }
+
+        if (StringUtils.isBlank(comments.getMail()) && !BlogUtils.isEmail(comments.getMail())) {
+            return ResponseBo.fail("请输入正确的邮箱格式");
+        }
+
+        if (StringUtils.isNotBlank(comments.getUrl()) && !BlogUtils.isURL(comments.getUrl())) {
+            return ResponseBo.fail("请输入正确的URL格式");
+        }
+
+        if (comments.getContent() == null || comments.getContent().length() > 200) {
+            return ResponseBo.fail("请输入200个字符以内的评论");
+        }
+        String val = IPUtils.getIpAddrByRequest(request) + ":" + comments.getCid();
+        Integer count = cache.hget(Types.COMMENTS_FREQUENCY.getType(), val);
+        if (null != count && count > 0) {
+            return ResponseBo.fail("您发表评论太快了，请过会再试");
+        }
+        String author = BlogUtils.cleanXSS(comments.getAuthor());
+        String text = BlogUtils.cleanXSS(comments.getContent());
+
+        author = EmojiParser.parseToAliases(author);
+        text = EmojiParser.parseToAliases(text);
+
+        comments.setCoid(null);
+        comments.setAuthor(author);
+        comments.setContent(text);
+        comments.setIp(request.getRemoteAddr());
+        comments.setCreated(DateKit.getCurrentUnixTime());
+        try {
+            String result = commentService.insertComments(comments) > 0 ? "SUCCESS" : "FAIL";
+            BlogUtils.cookie("blog_remember_author", URLEncoder.encode(author, "UTF-8"), 7 * 24 * 60 * 60, response);
+            BlogUtils.cookie("blog_remember_mail", URLEncoder.encode(comments.getMail(), "UTF-8"), 7 * 24 * 60 * 60, response);
+            if(StringUtils.isNotBlank(comments.getUrl())){
+                BlogUtils.cookie("blog_remember_url", URLEncoder.encode(comments.getUrl(), "UTF-8"), 7 * 24 * 60 * 60, response);
+            }
+            cache.hset(Types.COMMENTS_FREQUENCY.getType(), val, 1, 60);
+            if (!WebConst.SUCCESS_RESULT.equals(result)) {
+                return ResponseBo.fail(result);
+            }
+        }catch (Exception e){
+            return ResponseBo.fail("发布文章评论失败");
+        }
+        return ResponseBo.ok();
     }
 
     /**

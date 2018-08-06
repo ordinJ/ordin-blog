@@ -1,6 +1,9 @@
 package com.yaa.model;
 
-public class Comments {
+import java.io.Serializable;
+
+public class Comments implements Serializable {
+
     private Integer coid;
 
     private Integer cid;

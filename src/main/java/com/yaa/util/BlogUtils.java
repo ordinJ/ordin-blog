@@ -4,6 +4,8 @@ import com.yaa.extension.Commons;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.imageio.ImageIO;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import java.awt.*;
 import java.io.File;
 import java.security.MessageDigest;
@@ -174,6 +176,35 @@ public class BlogUtils {
             hexString.append(hex);
         }
         return hexString.toString();
+    }
+
+    public static boolean isURL(String url) {
+        String regex = "(https?://(w{3}\\.)?)?\\w+\\.\\w+(\\.[a-zA-Z]+)*(:\\d{1,5})?(/\\w*)*(\\??(.+=.*)?(&.+=.*)?)?";
+        return Pattern.matches(regex, url);
+    }
+
+    /**
+     * 替换HTML脚本
+     *
+     * @param value
+     * @return
+     */
+    public static String cleanXSS(String value) {
+        //You'll need to remove the spaces from the html entities below
+        value = value.replaceAll("<", "&lt;").replaceAll(">", "&gt;");
+        value = value.replaceAll("\\(", "&#40;").replaceAll("\\)", "&#41;");
+        value = value.replaceAll("'", "&#39;");
+        value = value.replaceAll("eval\\((.*)\\)", "");
+        value = value.replaceAll("[\\\"\\\'][\\s]*javascript:(.*)[\\\"\\\']", "\"\"");
+        value = value.replaceAll("script", "");
+        return value;
+    }
+
+    public static void cookie(String name, String value, int maxAge, HttpServletResponse response) {
+        Cookie cookie = new Cookie(name, value);
+        cookie.setMaxAge(maxAge);
+        cookie.setSecure(false);
+        response.addCookie(cookie);
     }
 
 }

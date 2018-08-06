@@ -35,7 +35,7 @@ public class CommentServiceImpl implements CommentService {
                 parents.forEach(parent -> {
                     CommentBo bo = new CommentBo(parent);
                     CommentsExample cExample = new CommentsExample();
-                    cExample.createCriteria().andParentEqualTo(parent.getCoid());
+                    cExample.createCriteria().andOwnerIdEqualTo(parent.getCoid());
                     cExample.setOrderByClause("coid asc");
                     List<Comments> children = commentsMapper.selectByExampleWithBLOBs(cExample);
                     if(children != null){
@@ -60,6 +60,12 @@ public class CommentServiceImpl implements CommentService {
             return comments.get(0);
         }
         return null;
+    }
+
+    @Override
+    public int insertComments(Comments comments) {
+        int count = commentsMapper.insertSelective(comments);
+        return count;
     }
 
     /**
