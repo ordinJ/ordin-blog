@@ -35,7 +35,12 @@ public class ErrorInterceptor implements HandlerInterceptor {
                 modelAndView.setViewName("/comm/error_" + response.getStatus());
             }
         }else{
-            request.setAttribute("commons",commons);
-        }
+             request.setAttribute("commons",commons);
+             //是否初始化
+             String install = WebConst.initConfig.get("allow_install");
+             if("0".equals(install)){
+                modelAndView.setViewName("/themes/default/install");
+             }
+         }
     }
 }

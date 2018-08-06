@@ -1,5 +1,7 @@
 package com.yaa.constant;
 
+import com.yaa.config.SpringContext;
+import com.yaa.service.CommentService;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -13,6 +15,8 @@ public class WebConst {
     public static String LOGIN_SESSION_KEY = "login_user";
 
     public static final String USER_IN_COOKIE = "S_L_ID";
+
+    public static final CommentService commentService = SpringContext.getBean(CommentService.class);
 
     /**
      * aes加密加盐

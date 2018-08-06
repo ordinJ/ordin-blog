@@ -3,6 +3,7 @@ package com.yaa.extension;
 
 import com.vdurmont.emoji.EmojiParser;
 import com.yaa.constant.WebConst;
+import com.yaa.model.Comments;
 import com.yaa.model.Contents;
 import com.yaa.util.BlogUtils;
 import com.yaa.util.TimeUtils;
@@ -22,12 +23,6 @@ import java.net.URLEncoder;
 public final class Commons {
 
     private static final String[] ICONS = {"bg-ico-book", "bg-ico-game", "bg-ico-note", "bg-ico-chat", "bg-ico-code", "bg-ico-image", "bg-ico-web", "bg-ico-link", "bg-ico-design", "bg-ico-lock"};
-
-    /**
-     * 显示文章图标
-     *
-     * @return
-     */
 
     /**
      * 网站链接
@@ -253,5 +248,36 @@ public final class Commons {
     }
 
 
+    /**
+     * 返回github头像地址
+     *  https://avatars0.githubusercontent.com/u/25025324?s=400&u=cf02830d6b8164ce0cd1c57b659cec1ab89cf4d0&v=4
+     * @param email
+     * @return
+     */
+    public static String gravatar(String email) {
+        String avatarUrl = "https://github.com/identicons/";
+        if (StringUtils.isBlank(email)) {
+            email = "yanghbwork@163.com";
+        }
+        String hash = BlogUtils.MD5encode(email.trim().toLowerCase());
+        return avatarUrl + hash + ".png";
+    }
+
+    /**
+     * 获取评论at信息
+     *
+     * @param coid
+     * @return
+     */
+    public static String comment_at(Integer coid) {
+        if(WebConst.commentService == null){
+            return "";
+        }
+        Comments comments = WebConst.commentService.getComments(coid);
+        if (null != comments) {
+            return "@" + comments.getAuthor();
+        }
+        return "";
+    }
 
 }

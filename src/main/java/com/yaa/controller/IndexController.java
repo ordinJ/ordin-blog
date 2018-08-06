@@ -3,10 +3,13 @@ package com.yaa.controller;
 import com.github.pagehelper.PageInfo;
 import com.yaa.constant.WebConst;
 import com.yaa.controller.base.BaseController;
+import com.yaa.model.Comments;
 import com.yaa.model.Contents;
 import com.yaa.model.Metas;
 import com.yaa.model.bo.ArchiveBo;
+import com.yaa.model.bo.CommentBo;
 import com.yaa.model.bo.MetasBo;
+import com.yaa.service.CommentService;
 import com.yaa.service.ContentService;
 import com.yaa.service.MetasService;
 import org.apache.commons.lang3.StringUtils;
@@ -26,6 +29,8 @@ public class IndexController extends BaseController{
     private ContentService contentService;
     @Autowired
     private MetasService metasService;
+    @Autowired
+    private CommentService commentService;
 
     /**
      * 首页
@@ -35,12 +40,7 @@ public class IndexController extends BaseController{
      */
     @RequestMapping(value = "/")
     public String indexPage(HttpServletRequest request,@RequestParam(value = "limit", defaultValue = "12") int limit){
-        //是否初始化
-        String install = WebConst.initConfig.get("allow_install");
-        if("1".equals(install)){
-            return this.index(request, 1, limit);
-        }
-        return this.render("install");
+        return this.index(request, 1, limit);
     }
 
     /**
@@ -74,6 +74,7 @@ public class IndexController extends BaseController{
         if (null == contents || "draft".equals(contents.getStatus())) {
             return this.render404();
         }
+        completeArticle(request, contents);
         request.setAttribute("article", contents);
         request.setAttribute("is_post", true);
         if (!checkHitsFrequency(request, cid)) {
@@ -95,6 +96,14 @@ public class IndexController extends BaseController{
         Contents contents = contentService.getContents(slug);
         if (null == contents || "draft".equals(contents.getStatus())) {
             return this.render404();
+        }
+        if (contents.getAllowComment()) {
+            String cp = request.getParameter("cp");
+            if (StringUtils.isBlank(cp)) {
+                cp = "1";
+            }
+            PageInfo<CommentBo> comments = commentService.getComments(contents.getCid(), Integer.parseInt(cp), 6);
+            request.setAttribute("comments", comments);
         }
         request.setAttribute("article", contents);
         request.setAttribute("is_post", false);
@@ -161,6 +170,22 @@ public class IndexController extends BaseController{
         return this.render("result");
     }
 
+    /**
+     * 获取文章评论
+     * @param request
+     * @param contents
+     */
+    private void completeArticle(HttpServletRequest request, Contents contents) {
+        if (contents.getAllowComment()) {
+            String cp = request.getParameter("cp");
+            if (StringUtils.isBlank(cp)) {
+                cp = "1";
+            }
+            request.setAttribute("cp", cp);
+            PageInfo<CommentBo> comments = commentService.getComments(contents.getCid(), Integer.parseInt(cp), 6);
+            request.setAttribute("comments", comments);
+        }
+    }
 
     /**
      * 更新文章的点击率

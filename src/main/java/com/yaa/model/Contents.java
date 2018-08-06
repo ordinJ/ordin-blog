@@ -149,8 +149,8 @@ public class Contents {
         this.commentsNum = commentsNum;
     }
 
-    public Integer getAllowComment() {
-        return allowComment;
+    public boolean getAllowComment() {
+        return allowComment.equals("0") ? false : true;
     }
 
     public void setAllowComment(Integer allowComment) {
