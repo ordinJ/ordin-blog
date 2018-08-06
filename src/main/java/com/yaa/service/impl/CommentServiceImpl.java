@@ -28,7 +28,8 @@ public class CommentServiceImpl implements CommentService {
             pExample.createCriteria().andCidEqualTo(cid).andParentEqualTo(0);
             pExample.setOrderByClause("coid desc");
             List<Comments> parents = commentsMapper.selectByExampleWithBLOBs(pExample);
-            PageInfo<CommentBo> returnBo = new PageInfo<>();
+            PageInfo<Comments> parentPage = new PageInfo<>(parents);
+            PageInfo<CommentBo> returnBo = setPageInfo(parentPage);
             if (parents.size() != 0) {
                 List<CommentBo> commentsBo = new ArrayList<>(parents.size());
                 parents.forEach(parent -> {
@@ -59,5 +60,31 @@ public class CommentServiceImpl implements CommentService {
             return comments.get(0);
         }
         return null;
+    }
+
+    /**
+     * copy原有的分页信息，除数据
+     * 返回格式不同，所以需要把父级的分页信息copy
+     * @param ordinal
+     * @param <T>
+     * @return
+     */
+    private <T> PageInfo<T> setPageInfo(PageInfo ordinal) {
+        PageInfo<T> returnBo = new PageInfo<T>();
+        returnBo.setPageSize(ordinal.getPageSize());
+        returnBo.setPageNum(ordinal.getPageNum());
+        returnBo.setEndRow(ordinal.getEndRow());
+        returnBo.setTotal(ordinal.getTotal());
+        returnBo.setHasNextPage(ordinal.isHasNextPage());
+        returnBo.setHasPreviousPage(ordinal.isHasPreviousPage());
+        returnBo.setIsFirstPage(ordinal.isIsFirstPage());
+        returnBo.setIsLastPage(ordinal.isIsLastPage());
+        returnBo.setNavigateFirstPage(ordinal.getNavigateFirstPage());
+        returnBo.setNavigateLastPage(ordinal.getNavigateLastPage());
+        returnBo.setNavigatepageNums(ordinal.getNavigatepageNums());
+        returnBo.setSize(ordinal.getSize());
+        returnBo.setPrePage(ordinal.getPrePage());
+        returnBo.setNextPage(ordinal.getNextPage());
+        return returnBo;
     }
 }
