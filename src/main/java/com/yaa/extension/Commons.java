@@ -330,6 +330,30 @@ public final class Commons {
         return comments;
     }
 
+    /**
+     * 返回社交账号链接
+     *
+     * @param type
+     * @return
+     */
+    public static String social_link(String type) {
+        String id = Commons.site_option("social_" + type);
+        if (id == null || "".equals(id)) {
+            return "javascript:void(0);";
+        }
+        switch (type) {
+            case "github":
+                return "https://github.com/" + id;
+            case "weibo":
+                return "http://weibo.com/" + id;
+            case "twitter":
+                return "https://twitter.com/" + id;
+            case "zhihu":
+                return "https://www.zhihu.com/people/" + id;
+            default:
+                return "javascript:void(0);";
+        }
+    }
 
     /**
      * 获取当前文章的上一篇
