@@ -111,7 +111,7 @@ public final class Commons {
         int cid = contents.getCid();
         int size = cid % 20;
         size = size == 0 ? 1 : size;
-        return "/img/rand/" + size + ".jpg";
+        return "/themes/img/rand/" + size + ".jpg";
     }
 
     /**
