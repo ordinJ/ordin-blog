@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.PrintWriter;
 import java.net.URLEncoder;
 import java.util.List;
 
@@ -173,6 +174,13 @@ public class IndexController extends BaseController{
         return this.render("result");
     }
 
+    /**
+     * 游客评论
+     * @param request
+     * @param response
+     * @param comments
+     * @return
+     */
     @ResponseBody
     @RequestMapping(value = "/comment",method = RequestMethod.POST)
     public ResponseBo comment(HttpServletRequest request, HttpServletResponse response,Comments comments) {
@@ -235,6 +243,23 @@ public class IndexController extends BaseController{
             return ResponseBo.fail("发布文章评论失败");
         }
         return ResponseBo.ok();
+    }
+
+    /**
+     * 获取RSS输出
+     * @param response
+     */
+    @RequestMapping(value = "/feed")
+    public void feed(HttpServletResponse response){
+        List<Contents> articles = contentService.getAllowFeedContents();
+        try {
+            String xml = BlogUtils.getRssXml(articles);
+            response.setContentType("text/xml; charset=utf-8");
+            PrintWriter printWriter = response.getWriter();
+            printWriter.write(xml);
+        } catch (Exception e) {
+            logger.error("feed article fail");
+        }
     }
 
     /**

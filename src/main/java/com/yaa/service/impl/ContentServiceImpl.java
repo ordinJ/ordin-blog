@@ -126,4 +126,13 @@ public class ContentServiceImpl implements ContentService {
         List<Contents> contents = contentsMapper.selectByExample(example);
         return contents;
     }
+
+    @Override
+    public List<Contents> getAllowFeedContents() {
+        ContentsExample example = new ContentsExample();
+        example.createCriteria().andStatusEqualTo(Types.PUBLISH.getType()).andTypeEqualTo(Types.ARTICLE.getType()).andAllowFeedEqualTo(1);
+        example.setOrderByClause("created desc");
+        List<Contents> contents = contentsMapper.selectByExampleWithBLOBs(example);
+        return contents;
+    }
 }

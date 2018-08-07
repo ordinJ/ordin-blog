@@ -1,6 +1,13 @@
 package com.yaa.util;
 
+import com.sun.syndication.feed.rss.Channel;
+import com.sun.syndication.feed.rss.Content;
+import com.sun.syndication.feed.rss.Item;
+import com.sun.syndication.io.FeedException;
+import com.sun.syndication.io.WireFeedOutput;
+import com.yaa.constant.WebConst;
 import com.yaa.extension.Commons;
+import com.yaa.model.Contents;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.imageio.ImageIO;
@@ -200,11 +207,60 @@ public class BlogUtils {
         return value;
     }
 
+    /**
+     * 设置网页cookie
+     * @param name
+     * @param value
+     * @param maxAge
+     * @param response
+     */
     public static void cookie(String name, String value, int maxAge, HttpServletResponse response) {
         Cookie cookie = new Cookie(name, value);
         cookie.setMaxAge(maxAge);
         cookie.setSecure(false);
         response.addCookie(cookie);
+    }
+
+    /**
+     * 获取RSS输出
+     *
+     * @param articles
+     * @return
+     * @throws FeedException
+     */
+    public static String getRssXml(List<Contents> articles) throws FeedException {
+        Channel channel = new Channel("rss_2.0");
+        channel.setTitle(WebConst.initConfig.get("site_title"));
+        channel.setLink(Commons.site_url());
+        channel.setDescription(WebConst.initConfig.get("site_description"));
+        channel.setLanguage("zh-CN");
+        List<Item> items = new ArrayList<>();
+        articles.forEach(post -> {
+            Item item = new Item();
+            item.setTitle(post.getTitle());
+            Content content = new Content();
+            String  value   = Commons.article(post.getContent());
+
+            char[] xmlChar = value.toCharArray();
+            for (int i = 0; i < xmlChar.length; ++i) {
+                if (xmlChar[i] > 0xFFFD) {
+                    //直接替换掉0xb
+                    xmlChar[i] = ' ';
+                } else if (xmlChar[i] < 0x20 && xmlChar[i] != 't' & xmlChar[i] != 'n' & xmlChar[i] != 'r') {
+                    //直接替换掉0xb
+                    xmlChar[i] = ' ';
+                }
+            }
+            value = new String(xmlChar);
+            content.setValue(value);
+            item.setContent(content);
+            item.setLink(Commons.permalink(post.getCid(), post.getSlug()));
+            item.setPubDate(DateKit.getDateByUnixTime(post.getCreated()));
+            items.add(item);
+        });
+        channel.setItems(items);
+        WireFeedOutput out = new WireFeedOutput();
+        return out.outputString(channel);
     }
 
 }

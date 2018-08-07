@@ -27,4 +27,6 @@ public interface ContentService {
     Contents getNhContent(String type, Integer created);
 
     List<Contents> getNewContents(Integer limit);
+
+    List<Contents> getAllowFeedContents();
 }
