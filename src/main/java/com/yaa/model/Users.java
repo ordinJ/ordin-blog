@@ -1,6 +1,8 @@
 package com.yaa.model;
 
-public class Users {
+import java.io.Serializable;
+
+public class Users implements Serializable{
     private Integer uid;
 
     private String username;
