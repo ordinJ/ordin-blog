@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body class="skin-black-light sidebar-mini">
+<div class="wrapper">
+    <!--头-->
+    <div th:replace="admin/header::header"></div>
+    <div th:replace="admin/sidebar::sidebar"></div>
+    <!-- 内容页 -->
+    <div class="content-wrapper">
+        <section class="content-header">
+            <h3>
+                系统设置
+            </h3>
+            <!--<ol class="breadcrumb">-->
+            <!--<li><a href="#"><i class="fa fa-dashboard"></i> </a></li>-->
+            <!--<li class="active">Dashboard</li>-->
+            <!--</ol>-->
+        </section>
+        <section class="content">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="box box-info">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">站点设置</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <!-- form start -->
+                        <form class="form-horizontal">
+                            <div class="box-body">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">网站地址</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" placeholder="网站地址">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">站点标题</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control"  placeholder="站点标题">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">站点子标题</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" placeholder="站点子标题">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">站点描述</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" placeholder="站点描述">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">站点关键词</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" placeholder="站点关键词">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                </div>
+                            </div>
+                            <!-- /.box-body -->
+                            <div class="box-footer">
+                                <button type="submit" class="btn btn-primary pull-right">保存设置</button>
+                            </div>
+                            <!-- /.box-footer -->
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="box box-info">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">个性化设置</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <!-- form start -->
+                        <form class="form-horizontal">
+                            <div class="box-body">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">微博账号</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" placeholder="微博账号，不输入则不显示">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">知乎账号</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control"  placeholder="知乎账号，不输入则不显示">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputPassword3" class="col-sm-2 control-label">GitHub账号</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" id="inputPassword3" placeholder="知乎账号，不输入则不显示">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Twitter账号</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" placeholder="Twitter账号，不输入则不显示">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                </div>
+                            </div>
+                            <!-- /.box-body -->
+                            <div class="box-footer">
+                                <button type="submit" class="btn btn-primary pull-right">保存设置</button>
+                            </div>
+                            <!-- /.box-footer -->
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- 底部 -->
+    <div th:replace="admin/footer::footer"></div>
+</div>
+</body>
+</html>

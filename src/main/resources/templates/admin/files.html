@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body class="skin-black-light sidebar-mini">
+<div class="wrapper">
+    <!--头-->
+    <div th:replace="admin/header::header"></div>
+    <div th:replace="admin/sidebar::sidebar"></div>
+    <!-- 内容页 -->
+    <div class="content-wrapper">
+        <section class="content-header">
+            <h3>
+                文件管理
+            </h3>
+            <!--<ol class="breadcrumb">-->
+            <!--<li><a href="#"><i class="fa fa-dashboard"></i> </a></li>-->
+            <!--<li class="active">Dashboard</li>-->
+            <!--</ol>-->
+        </section>
+        <section class="content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box box-info">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">上传</h3>
+                        </div>
+                        <!-- form start -->
+                        <form class="form-horizontal">
+                            <div class="box-body">
+                                <div class="col-md-12">
+                                    <div class="layui-upload-drag" id="test10">
+                                        <i class="layui-icon"></i>
+                                        <p>点击上传，或将文件拖拽到此处</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="box box-info">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">列表</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <!-- form start -->
+                        <form class="form-horizontal">
+                            <div class="box-body">
+                                <div class="col-md-2 text-center m-t-10">
+                                    <a href="http://yangxs.oss-cn-beijing.aliyuncs.com/article/2018/02/7lt38sn21ci3qobfpach5r9cm7.jpg" target="_blank">
+                                        <img class="attach-img" src=" http://yangxs.oss-cn-beijing.aliyuncs.com/article/2018/02/7lt38sn21ci3qobfpach5r9cm7.jpg " title="a4.jpg">
+                                    </a>
+                                    <div class="clearfix m-t-10">
+                                        <span class="attach-text" data-toggle="tooltip" data-placement="top" data-original-title="a4.jpg">a4.jpg</span>
+                                    </div>
+                                    <div class="clearfix">
+                                        <button url="http://yangxs.oss-cn-beijing.aliyuncs.com/article/2018/02/7lt38sn21ci3qobfpach5r9cm7.jpg" type="button" class="btn btn-warning btn-sm waves-effect waves-light m-t-5 copy">
+                                            <i class="fa fa-copy"></i> <span>复制</span>
+                                        </button>
+                                        <button type="button" class="btn btn-danger btn-sm waves-effect waves-light m-t-5" onclick="delAttach(10);">
+                                            <i class="fa fa-trash-o"></i> <span>删除</span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 text-center m-t-10">
+                                    <a href="http://yangxs.oss-cn-beijing.aliyuncs.com/article/2018/08/ujt9mjr5lui6hrijcogtf20ldu.jpg" target="_blank">
+                                        <img class="attach-img" src=" http://yangxs.oss-cn-beijing.aliyuncs.com/article/2018/08/ujt9mjr5lui6hrijcogtf20ldu.jpg " title="a2.jpg">
+                                    </a>
+                                    <div class="clearfix m-t-10">
+                                        <span class="attach-text" data-toggle="tooltip" data-placement="top" data-original-title="a2.jpg">a2.jpg</span>
+                                    </div>
+                                    <div class="clearfix">
+                                        <button url="http://yangxs.oss-cn-beijing.aliyuncs.com/article/2018/08/ujt9mjr5lui6hrijcogtf20ldu.jpg" type="button" class="btn btn-warning btn-sm waves-effect waves-light m-t-5 copy">
+                                            <i class="fa fa-copy"></i> <span>复制</span>
+                                        </button>
+                                        <button type="button" class="btn btn-danger btn-sm waves-effect waves-light m-t-5" onclick="delAttach(11);">
+                                            <i class="fa fa-trash-o"></i> <span>删除</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.box-body -->
+                            <div class="box-footer">
+                                <ul class="pagination pagination-sm no-margin pull-right">
+                                    <li><a href="#">«</a></li>
+                                    <li><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">»</a></li>
+                                </ul>
+                            </div>
+                            <!-- /.box-footer -->
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- 底部 -->
+    <div th:replace="admin/footer::footer"></div>
+</div>
+</body>
+<script>
+    layui.use('upload', function(){
+        var $ = layui.jquery
+            ,upload = layui.upload;
+
+        //拖拽上传
+        upload.render({
+            elem: '#test10'
+            ,url: '/upload/'
+            ,done: function(res){
+                console.log(res)
+            }
+        });
+    });
+</script>
+</html>
