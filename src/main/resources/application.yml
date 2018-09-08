@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: local
+    active: prod
 #mybatis配置
 mybatis:
   configuration:
@@ -19,8 +19,12 @@ spring:
      username: root
      password: 123456
      driver-class-name: com.mysql.jdbc.Driver
+     type: com.alibaba.druid.pool.DruidDataSource
+     initialSize: 20
+     minIdle: 10
+     maxActive : 100
 server:
-  port: 8080
+  port: 8000
 logging:
   file: log/site.log
 blog:   #自定义属性
@@ -33,10 +37,14 @@ spring:
        favicon:
          enabled: false
    datasource:
-        url: jdbc:mysql://localhost:3306/blog?useSSL=false&allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=UTF-8
+        url: jdbc:mysql://47.75.166.206:3306/blog?useSSL=false&allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=UTF-8
         username: root
         password: 123456
         driver-class-name: com.mysql.jdbc.Driver
+        type: com.alibaba.druid.pool.DruidDataSource
+        initialSize: 20
+        minIdle: 10
+        maxActive : 100
 server:
   port: 443
   ssl:
