@@ -72,28 +72,6 @@
 <script th:src="@{~/admin/layui/layui.js}"></script>
 <!-- Bootstrap 3.3.7 -->
 <script th:src="@{~/admin/js/bootstrap.min.js}"></script>
-
-<script>
-    layui.use('layer', function() {
-        //弹出一个提示层
-        $('#login').on('click', function () {
-            $.ajax({
-                url:"/admin/login",
-                method:"post",
-                data:{
-                    username:$("#username").val(),
-                    password:$("#password").val(),
-                },
-                success:function (data) {
-                    if(!data.success){
-                        layer.msg(data.msg);
-                    }else{
-                        window.location.href="/admin/index";
-                    }
-                }
-            })
-        });
-    });
-</script>
+<script th:src="@{~/admin/js/login.js}"></script>
 </body>
 </html>
