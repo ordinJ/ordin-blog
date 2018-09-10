@@ -41,6 +41,7 @@ public class BaseInterceptor implements HandlerInterceptor {
                 request.getSession().setAttribute(WebConst.LOGIN_SESSION_KEY, user);
             }
         }
+        //静态资源不拦截
         if(uri.endsWith(".css") || uri.endsWith(".js") || uri.endsWith(".ttf") || uri.endsWith(".woff") || uri.endsWith(".woff2")){
             return true;
         }
