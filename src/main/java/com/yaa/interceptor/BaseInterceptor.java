@@ -7,7 +7,6 @@ import com.yaa.service.UserService;
 import com.yaa.util.BlogUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -24,7 +23,7 @@ public class BaseInterceptor implements HandlerInterceptor {
     private static final Logger LOGGE = LoggerFactory.getLogger(BaseInterceptor.class);
     private static final String USER_AGENT = "user-agent";
 
-    @Autowired
+    @Resource
     private UserService userService;
 
     @Resource
@@ -42,11 +41,11 @@ public class BaseInterceptor implements HandlerInterceptor {
                 request.getSession().setAttribute(WebConst.LOGIN_SESSION_KEY, user);
             }
         }
+        if(uri.endsWith(".css") || uri.endsWith(".js") || uri.endsWith(".ttf") || uri.endsWith(".woff") || uri.endsWith(".woff2")){
+            return true;
+        }
         //请求拦截处理(后台)
         if (uri.startsWith(contextPath + "/admin") && !uri.startsWith(contextPath + "/admin/login") && null == user) {
-            if(uri.endsWith(".css") || uri.endsWith(".js") || uri.endsWith(".ttf") || uri.endsWith(".woff") || uri.endsWith(".woff2")){
-                return true;
-            }
             response.sendRedirect(request.getContextPath() + "/admin/login");
             return false;
         }
