@@ -13,6 +13,15 @@ public class IndexController extends BaseController {
 
 
     /**
+     * 登录页
+     * @return
+     */
+    @GetMapping(value = "/login")
+    public String login() {
+        return "admin/login";
+    }
+
+    /**
      * 首页
      * @return
      */

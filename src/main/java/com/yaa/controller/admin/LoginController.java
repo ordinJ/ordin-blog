@@ -16,11 +16,6 @@ public class LoginController extends BaseController {
     @Autowired
     private UserService userService;
 
-    @GetMapping(value = "/login")
-    public String login() {
-        return "admin/login";
-    }
-
     @ResponseBody
     @PostMapping(value = "/login")
     public ResponseBo doLogin(Users users,HttpServletRequest request) {
