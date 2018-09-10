@@ -2,7 +2,6 @@ package com.yaa.extension;
 
 
 import com.vdurmont.emoji.EmojiParser;
-import com.yaa.config.SpringContext;
 import com.yaa.constant.WebConst;
 import com.yaa.dto.Types;
 import com.yaa.model.Comments;
@@ -11,8 +10,8 @@ import com.yaa.service.CommentService;
 import com.yaa.service.ContentService;
 import com.yaa.util.BlogUtils;
 import com.yaa.util.TimeUtils;
-import org.springframework.stereotype.Component;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.stereotype.Component;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -26,6 +25,15 @@ import java.util.List;
  */
 @Component
 public final class Commons {
+
+    private static CommentService commentService;
+    private static ContentService contentService;
+
+    public Commons(CommentService commentService,ContentService contentService){
+        this.commentService = commentService;
+        this.contentService = contentService;
+
+    }
 
     private static final String[] ICONS = {"bg-ico-book", "bg-ico-game", "bg-ico-note", "bg-ico-chat", "bg-ico-code", "bg-ico-image", "bg-ico-web", "bg-ico-link", "bg-ico-design", "bg-ico-lock"};
 
@@ -275,7 +283,6 @@ public final class Commons {
      * @return
      */
     public static String comment_at(Integer coid) {
-        CommentService commentService = SpringContext.getBean(CommentService.class);
         if(commentService == null){
             return "";
         }
@@ -319,7 +326,6 @@ public final class Commons {
      * @return
      */
     public static List<Contents> recent_articles(Integer limit) {
-        ContentService contentService = SpringContext.getBean(ContentService.class);
         List<Contents> contents = contentService.getNewContents(limit);
         return contents;
     }
@@ -331,7 +337,6 @@ public final class Commons {
      * @return
      */
     public static List<Comments> recent_comments(int limit) {
-        CommentService commentService = SpringContext.getBean(CommentService.class);
         List<Comments> comments = commentService.recentComments(limit);
         return comments;
     }
@@ -367,7 +372,6 @@ public final class Commons {
      * @return
      */
     private static Contents article_prev(Integer cid) {
-        ContentService contentService = SpringContext.getBean(ContentService.class);
         Contents cur = contentService.getContents(cid);
         return null != cur ? contentService.getNhContent(Types.PREV.getType(), cur.getCreated()) : null;
     }
@@ -378,7 +382,6 @@ public final class Commons {
      * @return
      */
     private static Contents article_next(Integer cid) {
-        ContentService contentService = SpringContext.getBean(ContentService.class);
         Contents cur = contentService.getContents(cid);
         return null != cur ? contentService.getNhContent(Types.NEXT.getType(), cur.getCreated()) : null;
     }
