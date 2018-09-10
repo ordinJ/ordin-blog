@@ -128,7 +128,7 @@ public class ResponseBo<T> {
     }
 
     public static ResponseBo fail(String msg) {
-        return new ResponseBo(false, msg);
+        return new ResponseBo(false, msg,-1);
     }
 
     public static ResponseBo fail(int code) {
