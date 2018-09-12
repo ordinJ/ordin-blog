@@ -31,25 +31,6 @@ public class IndexController extends BaseController {
         return "admin/index";
     }
 
-    /**
-     * 发布文章页
-     * @return
-     */
-    @RequestMapping(value = "/edit")
-    public String toEdit(HttpServletRequest request){
-        request.setAttribute("active","edit");
-        return "admin/article_edit";
-    }
-
-    /**
-     * 文章管理页
-     * @return
-     */
-    @RequestMapping(value = "/articles")
-    public String manage(HttpServletRequest request){
-        request.setAttribute("active","articles");
-        return "admin/articles";
-    }
 
     /**
      * 页面管理页
