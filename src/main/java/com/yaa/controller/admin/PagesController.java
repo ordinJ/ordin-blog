@@ -5,7 +5,6 @@ import com.yaa.controller.base.BaseController;
 import com.yaa.model.Contents;
 import com.yaa.model.Users;
 import com.yaa.model.bo.ResponseBo;
-import com.yaa.service.ArticleService;
 import com.yaa.service.PagesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -38,9 +37,9 @@ public class PagesController extends BaseController {
      * @param request
      * @return
      */
-    @GetMapping(value = "/toPage")
-    public String addPage(HttpServletRequest request){
-        pagesService.addPage(request);
+    @GetMapping(value = "/goPublish")
+    public String goPublish(HttpServletRequest request){
+        pagesService.goPublish(request);
         return "admin/page_edit";
     }
 
@@ -51,7 +50,7 @@ public class PagesController extends BaseController {
      */
     @ResponseBody
     @PostMapping(value = "/delete")
-    public ResponseBo deleteArt(@RequestParam(value = "id", defaultValue = "0") Integer id){
+    public ResponseBo deletePage(@RequestParam(value = "id", defaultValue = "0") Integer id){
         return pagesService.deletePages(id);
     }
 

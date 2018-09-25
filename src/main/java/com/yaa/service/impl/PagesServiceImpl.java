@@ -60,7 +60,7 @@ public class PagesServiceImpl implements PagesService {
     }
 
     @Override
-    public void addPage(HttpServletRequest request) {
+    public void goPublish(HttpServletRequest request) {
         MetasExample example = new MetasExample();
         example.createCriteria().andTypeEqualTo(Types.PAGE.getType());
         List<Metas> categories = metasMapper.selectByExample(example);

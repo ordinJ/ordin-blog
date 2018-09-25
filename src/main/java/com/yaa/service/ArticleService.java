@@ -15,7 +15,7 @@ public interface ArticleService {
 
     void editArticle(Integer id,HttpServletRequest request);
 
-    void saveArticle(HttpServletRequest request);
+    void goPublish(HttpServletRequest request);
 
     ResponseBo updateArticle(Contents contents);
 

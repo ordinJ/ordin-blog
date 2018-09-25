@@ -65,7 +65,7 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public void saveArticle(HttpServletRequest request) {
+    public void goPublish(HttpServletRequest request) {
         MetasExample example = new MetasExample();
         example.createCriteria().andTypeEqualTo(Types.CATEGORY.getType());
         List<Metas> categories = metasMapper.selectByExample(example);

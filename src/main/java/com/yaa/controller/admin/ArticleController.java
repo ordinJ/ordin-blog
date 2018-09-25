@@ -36,9 +36,9 @@ public class ArticleController extends BaseController {
      * 发布文章页
      * @return
      */
-    @RequestMapping(value = "/gosave")
-    public String toEdit(HttpServletRequest request){
-        articleService.saveArticle(request);
+    @RequestMapping(value = "/goPublish")
+    public String goPublish(HttpServletRequest request){
+        articleService.goPublish(request);
         return "admin/article_edit";
     }
 

@@ -15,7 +15,7 @@ public interface PagesService {
 
     void editPages(Integer id,HttpServletRequest request);
 
-    void addPage(HttpServletRequest request);
+    void goPublish(HttpServletRequest request);
 
     ResponseBo updatePage(Contents contents);
 
