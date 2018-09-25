@@ -32,15 +32,6 @@ public class IndexController extends BaseController {
     }
 
 
-    /**
-     * 页面管理页
-     * @return
-     */
-    @RequestMapping(value = "/pages")
-    public String pages(HttpServletRequest request){
-        request.setAttribute("active","pages");
-        return "admin/pages";
-    }
 
     /**
      * 文件管理页

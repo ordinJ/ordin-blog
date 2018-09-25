@@ -111,6 +111,10 @@ public class ResponseBo<T> {
         return new ResponseBo(true);
     }
 
+    public static ResponseBo ok(String msg) {
+        return new ResponseBo(true,msg);
+    }
+
     public static <T> ResponseBo ok(T payload) {
         return new ResponseBo(true, payload);
     }

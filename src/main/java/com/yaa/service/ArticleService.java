@@ -2,6 +2,7 @@ package com.yaa.service;
 
 import com.github.pagehelper.PageInfo;
 import com.yaa.model.Contents;
+import com.yaa.model.Users;
 import com.yaa.model.bo.ResponseBo;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +19,6 @@ public interface ArticleService {
 
     ResponseBo updateArticle(Contents contents);
 
-    ResponseBo addArticle(Contents contents);
+    ResponseBo addArticle(Contents contents, Users users);
 
 }

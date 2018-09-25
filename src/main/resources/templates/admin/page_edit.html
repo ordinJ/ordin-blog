@@ -16,10 +16,10 @@
         <section class="content-header">
             <h3>
                 <th:block th:if="${null != contents}">
-                    编辑文章
+                    编辑页面
                 </th:block>
                 <th:block th:unless="${null != contents}">
-                    发布文章
+                    新增页面
                 </th:block>
             </h3>
             <!--<ol class="breadcrumb">-->
@@ -36,7 +36,7 @@
                         </div>
                         <!-- /.box-header -->
                         <!-- form start -->
-                        <form id="articleForm" class="form-horizontal">
+                        <form id="pageForm" class="form-horizontal">
                             <div class="box-body">
                                 <input type="hidden" name="cid"
                                        th:value="${contents!=null and contents.cid!=null}?${contents.cid}: ''" id="cid"/>
@@ -54,16 +54,10 @@
                                        id="allow_feed"/>
                                 <input type="hidden" name="content" id="content-editor"/>
                                 <div class="form-group">
-                                    <label for="title" class="col-sm-2 control-label">文章标题：</label>
+                                    <label for="title" class="col-sm-2 control-label">页面标题：</label>
                                     <div class="col-sm-4">
                                         <input type="text" th:value="${contents!=null and contents.title!=null }?${contents.title}: ''"
                                                class="form-control" name="title" id="title" placeholder="请输入文章标题">
-                                    </div>
-                                    <label for="tags" class="col-sm-2 control-label">文章标签：</label>
-
-                                    <div class="col-sm-4">
-                                        <input type="text" th:value="${contents!=null and contents.tags !=null}?${contents.tags}: ''"
-                                               class="form-control" name="tags" id="tags" placeholder="请输入文章标签">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -73,24 +67,6 @@
                                                class="form-control" name="slug" id="slug"
                                                placeholder="自定义访问路径，如：my-first-article  默认为文章id"
                                                th:value="${contents!=null and contents.slug !=null}?${contents.slug}: ''">
-                                    </div>
-
-                                    <label for="categories" class="col-sm-2 control-label">文章类型：</label>
-                                    <div class="col-sm-4">
-                                        <select class="form-control" id="categories" name="categories">
-                                            <th:block th:if="${null == contents}">
-                                                <option value="默认分类" selected="selected">默认分类</option>
-                                                <th:block th:each="c : ${categories}">
-                                                    <option th:value="${c.name}" th:text="${c.name}"></option>
-                                                </th:block>
-                                            </th:block>
-                                            <th:block th:unless="${null == contents}">
-                                                <th:block th:each="c : ${categories}">
-                                                    <option th:value="${c.name}" th:text="${c.name}"
-                                                            th:selected="${null !=contents and contents.categories==c.name}?true:false"></option>
-                                                </th:block>
-                                            </th:block>
-                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -128,8 +104,8 @@
                             <!-- /.box-body -->
                             <div class="box-footer">
                                 <input type="button" th:style="${contents==null?'display: none':''}" onclick="returnMenu()" value="返回列表" class="btn btn-default"/>
-                                <input type="button" onclick="subArticle('publish')" value="保存文章" class="btn btn-primary pull-right"/>
-                                <input type="button" onclick="subArticle('draft')" value="存为草稿" class="btn btn-danger pull-right"/>
+                                <input type="button" onclick="subPage('publish')" value="保存页面" class="btn btn-primary pull-right"/>
+                                <input type="button" onclick="subPage('draft')" value="存为草稿" class="btn btn-danger pull-right"/>
                             </div>
                         </form>
                     </div>
@@ -142,7 +118,7 @@
 </div>
 </body>
 <script th:src="@{~/admin/js/mditor.min.js}"></script>
-<script th:src="@{~/admin/js/article.js}"></script>
+<script th:src="@{~/admin/js/page.js}"></script>
 <script>
 
 </script>

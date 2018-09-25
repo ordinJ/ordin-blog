@@ -63,7 +63,9 @@
                                             </td>
                                             <td>
                                                 <a class="btn btn-default btn-sm" th:href="@{'/admin/articles/edit/'+${post.cid}}" title="编辑"><i class="fa fa-edit"></i>编辑</a>
-                                                <a class="btn btn-danger btn-sm" href="#" title="删除"><i class="fa fa-trash-o"></i>删除</a>
+                                                <a th:onclick="'delArtcle('+${post.cid}+')'" class="btn btn-danger btn-sm" href="#" title="删除">
+                                                    <i class="fa fa-trash-o"></i>删除
+                                                </a>
                                             </td>
                                         </tr>
                                     </th:block>
@@ -84,4 +86,23 @@
     <div th:replace="admin/footer::footer"></div>
 </div>
 </body>
+<script>
+    layui.use('layer', function() {
+    });
+    function delArtcle(id) {
+        layer.confirm('删除这篇文章？', {
+            btn: ['是','否'] //按钮
+        }, function(){
+            $.ajax({
+                url: '/admin/articles/delete',
+                method: "POST",
+                data: {"id": id},
+                success: function (result) {
+                    location.reload();
+                }
+            })
+        }, function(){
+        });
+    }
+</script>
 </html>

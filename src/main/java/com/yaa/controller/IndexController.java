@@ -268,7 +268,7 @@ public class IndexController extends BaseController{
      * @param contents
      */
     private void completeArticle(HttpServletRequest request, Contents contents) {
-        if (contents.getAllowComment()) {
+        if (contents.getComment()) {
             String cp = request.getParameter("cp");
             if (StringUtils.isBlank(cp)) {
                 cp = "1";

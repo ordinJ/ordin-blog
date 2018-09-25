@@ -2,6 +2,8 @@ package com.yaa.controller.base;
 
 import com.yaa.constant.WebConst;
 import com.yaa.dto.Types;
+import com.yaa.model.Users;
+import com.yaa.util.BlogUtils;
 import com.yaa.util.IPUtils;
 import com.yaa.util.MapCache;
 
@@ -47,6 +49,15 @@ public class BaseController {
         }
         cache.hset(Types.HITS_FREQUENCY.getType(), val, 1, WebConst.HITS_LIMIT_TIME);
         return false;
+    }
+
+    /**
+     * 获取请求绑定的登录对象
+     * @param request
+     * @return
+     */
+    public Users user(HttpServletRequest request) {
+        return BlogUtils.getLoginUser(request);
     }
 
 
