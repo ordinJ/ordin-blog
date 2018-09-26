@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.yaa.model.Comments;
 import com.yaa.model.Users;
 import com.yaa.model.bo.CommentBo;
+import com.yaa.model.bo.ResponseBo;
 
 import java.util.List;
 
@@ -20,5 +21,6 @@ public interface CommentService {
     //admin
     PageInfo<Comments> getCommentsWithPage(Users user, int page, int limit);
 
+    ResponseBo deleteComments(Integer id);
 
 }

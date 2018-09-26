@@ -6,6 +6,7 @@ import com.yaa.mapper.CommentsMapper;
 import com.yaa.model.Comments;
 import com.yaa.model.Users;
 import com.yaa.model.bo.CommentBo;
+import com.yaa.model.bo.ResponseBo;
 import com.yaa.model.vo.CommentsExample;
 import com.yaa.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,6 +78,7 @@ public class CommentServiceImpl implements CommentService {
         return commentsMapper.selectByExampleWithBLOBs(example);
     }
 
+    //admin
     @Override
     public PageInfo<Comments> getCommentsWithPage(Users user, int page, int limit) {
         CommentsExample example = new CommentsExample();
@@ -86,6 +88,18 @@ public class CommentServiceImpl implements CommentService {
         List<Comments> comments = commentsMapper.selectByExampleWithBLOBs(example);
         PageInfo<Comments> pageInfo = new PageInfo<>(comments);
         return pageInfo;
+    }
+
+    @Override
+    public ResponseBo deleteComments(Integer id) {
+        if(id==0){
+            return ResponseBo.fail("参数错误");
+        }
+        int count = commentsMapper.deleteByPrimaryKey(id);
+        if(count>0){
+            return ResponseBo.ok("删除成功！");
+        }
+        return ResponseBo.fail("删除失败");
     }
 
     /**

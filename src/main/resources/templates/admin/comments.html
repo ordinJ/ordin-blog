@@ -72,10 +72,10 @@
                                             </th:block>
                                         </td>
                                         <td>
-                                            <a class="btn btn-default btn-sm" href="#" title="回复">
+                                            <a th:onclick="'openModule('+${comm.coid}+')'" class="btn btn-default btn-sm" href="#" title="回复">
                                                 <i class="fa fa-edit"></i>回复
                                             </a>
-                                            <a class="btn btn-danger btn-sm" href="#" title="删除">
+                                            <a th:onclick="'delComments('+${comm.coid}+')'" class="btn btn-danger btn-sm" href="#" title="删除">
                                                 <i class="fa fa-trash-o"></i>删除
                                             </a>
                                         </td>
@@ -98,4 +98,33 @@
     <div th:replace="admin/footer::footer"></div>
 </div>
 </body>
+<script>
+    layui.use('layer', function() {
+    });
+    function delComments(id) {
+        layer.confirm('删除这条评论？', {
+            btn: ['是','否'] //按钮
+        }, function(){
+            $.ajax({
+                url: '/admin/comments/delete',
+                method: "POST",
+                data: {"id": id},
+                success: function (result) {
+                    location.reload();
+                }
+            })
+        }, function(){
+        });
+    }
+    function openModule(id) {
+        layer.open({
+            title:'回复',
+            type: 2,
+            area: ['700px', '450px'],
+            fixed: false, //不固定
+            maxmin: true,
+            content:'<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">你知道吗？亲！<br>layer ≠ layui<br><br>layer只是作为Layui的一个弹层模块，由于其用户基数较大，所以常常会有人以为layui是layerui<br><br>layer虽然已被 Layui 收编为内置的弹层模块，但仍然会作为一个独立组件全力维护、升级。<br><br>我们此后的征途是星辰大海 ^_^</div>',
+        });
+    }
+</script>
 </html>
