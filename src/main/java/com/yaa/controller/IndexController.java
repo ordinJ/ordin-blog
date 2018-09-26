@@ -223,6 +223,8 @@ public class IndexController extends BaseController{
         author = EmojiParser.parseToAliases(author);
         text = EmojiParser.parseToAliases(text);
 
+        //未读
+        comments.setStatus("0");
         comments.setCoid(null);
         comments.setAuthor(author);
         comments.setContent(text);
