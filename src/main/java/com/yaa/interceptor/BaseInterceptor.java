@@ -42,16 +42,18 @@ public class BaseInterceptor implements HandlerInterceptor {
             }
         }
         //静态资源不拦截
-        if(uri.endsWith(".css") || uri.endsWith(".js") || uri.endsWith(".ttf") || uri.endsWith(".woff") || uri.endsWith(".woff2")){
+        if(uri.contains("css") || uri.contains("js") || uri.contains("fonts")){
             return true;
         }
         //请求拦截处理(后台)
-        if (uri.startsWith(contextPath + "/admin") && !uri.startsWith(contextPath + "/admin/login") && null == user) {
-            response.sendRedirect(request.getContextPath() + "/admin/login");
-            return false;
-        }else if(uri.startsWith(contextPath + "/admin") && !uri.startsWith(contextPath + "/admin/index") && null != user){
-            response.sendRedirect(request.getContextPath() + "/admin/index");
-            return false;
+        if (uri.equals(contextPath + "/admin") || uri.equals(contextPath + "/admin/")) {
+            if(user != null && !uri.equals("/admin/index")){
+                response.sendRedirect(request.getContextPath() + "/admin/index");
+                return false;
+            }else{
+                response.sendRedirect(request.getContextPath() + "/admin/login");
+                return false;
+            }
         }
         return true;
     }

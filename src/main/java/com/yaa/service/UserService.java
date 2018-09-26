@@ -5,6 +5,9 @@ import com.yaa.model.bo.ResponseBo;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * admin
+ */
 public interface UserService {
 
     Users getUsers(int id);

@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.yaa.mapper.CommentsMapper;
 import com.yaa.model.Comments;
+import com.yaa.model.Users;
 import com.yaa.model.bo.CommentBo;
 import com.yaa.model.vo.CommentsExample;
 import com.yaa.service.CommentService;
@@ -74,6 +75,17 @@ public class CommentServiceImpl implements CommentService {
         CommentsExample example =new CommentsExample();
         example.setOrderByClause("created desc");
         return commentsMapper.selectByExampleWithBLOBs(example);
+    }
+
+    @Override
+    public PageInfo<Comments> getCommentsWithPage(Users user, int page, int limit) {
+        CommentsExample example = new CommentsExample();
+        example.setOrderByClause("coid desc");
+        example.createCriteria().andAuthorIdNotEqualTo(user.getUid());
+        PageHelper.startPage(page, limit);
+        List<Comments> comments = commentsMapper.selectByExampleWithBLOBs(example);
+        PageInfo<Comments> pageInfo = new PageInfo<>(comments);
+        return pageInfo;
     }
 
     /**

@@ -43,15 +43,6 @@ public class IndexController extends BaseController {
         return "admin/files";
     }
 
-    /**
-     * 评论管理页
-     * @return
-     */
-    @RequestMapping(value = "/comments")
-    public String comments(HttpServletRequest request){
-        request.setAttribute("active","true");
-        return "admin/comments";
-    }
 
     /**
      * 分类/标签页

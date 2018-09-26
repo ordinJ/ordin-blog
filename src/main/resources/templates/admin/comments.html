@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="admin/header::header"></div>
 <body class="skin-black-light sidebar-mini">
 <div class="wrapper">
     <!--头-->
-    <div th:replace="admin/header::header"></div>
     <div th:replace="admin/sidebar::sidebar"></div>
     <!-- 内容页 -->
     <div class="content-wrapper">
@@ -38,7 +38,6 @@
                             <table class="table table-hover">
                                 <tbody>
                                 <tr>
-                                    <th>ID</th>
                                     <th>评论内容	</th>
                                     <th>评论人</th>
                                     <th>评论时间</th>
@@ -47,30 +46,46 @@
                                     <th>评论状态	</th>
                                     <th>操作</th>
                                 </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>什么鬼啊？那里来的服务器</td>
-                                    <td>杨光鸿</td>
-                                    <td>2018-02-03 15:10:42	</td>
-                                    <td>1819500@123.com	</td>
-                                    <td>www.baidu.com</td>
-                                    <td><span class="label label-success">已回复</span></td>
-                                    <td>
-                                        <a class="btn btn-default btn-sm" href="#" title="回复"><i class="fa fa-edit"></i>回复</a>
-                                        <a class="btn btn-danger btn-sm" href="#" title="删除"><i class="fa fa-trash-o"></i>删除</a>
-                                    </td>
-                                </tr>
+                                <th:block th:each="comm : ${comments.list}">
+                                    <tr>
+                                        <td>
+                                            <th:block th:text="${comm.content}"/>
+                                        </td>
+                                        <td>
+                                            <th:block th:text="${comm.author}"/>
+                                        </td>
+                                        <td>
+                                            <th:block th:text="${commons.fmtdate(comm.created, 'yyyy-MM-dd HH:mm:ss')}"/>
+                                        </td>
+                                        <td>
+                                            <th:block th:text="${comm.mail}"/>
+                                        </td>
+                                        <td>
+                                            <th:block th:text="${comm.url}"/>
+                                        </td>
+                                        <td>
+                                            <th:block th:if="${comm.status == '1'}">
+                                                <span class="label label-success">已回复</span>
+                                            </th:block>
+                                            <th:block th:if="${comm.status == '0'}">
+                                                <span class="label label-danger">未读</span>
+                                            </th:block>
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-default btn-sm" href="#" title="回复">
+                                                <i class="fa fa-edit"></i>回复
+                                            </a>
+                                            <a class="btn btn-danger btn-sm" href="#" title="删除">
+                                                <i class="fa fa-trash-o"></i>删除
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </th:block>
                                 </tbody>
                             </table>
                         </div>
                         <div class="box-footer clearfix">
-                            <ul class="pagination pagination-sm no-margin pull-right">
-                                <li><a href="#">«</a></li>
-                                <li><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">»</a></li>
-                            </ul>
+                            <div th:replace="comm/macros :: pageAdminNav(${comments})"></div>
                         </div>
                         <!-- /.box-body -->
                     </div>

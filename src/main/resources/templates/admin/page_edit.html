@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">+
+<div th:replace="admin/header::header"></div>
 <body class="skin-black-light sidebar-mini">
-<link rel="stylesheet" href="https://unpkg.com/mditor@1.0.5/dist/css/mditor.min.css" />
+<link rel="stylesheet" th:href="@{~/admin/css/mditor.min.css}" />
 <style type="text/css">
     .col-sm-12 mditor split{
         height: 650px;
@@ -9,7 +10,6 @@
 </style>
 <div class="wrapper">
     <!--头-->
-    <div th:replace="admin/header::header"></div>
     <div th:replace="admin/sidebar::sidebar"></div>
     <!-- 内容页 -->
     <div class="content-wrapper">

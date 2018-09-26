@@ -7,6 +7,9 @@ import com.yaa.model.bo.ResponseBo;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * admin
+ */
 public interface ArticleService {
 
     PageInfo<Contents> selectArticlePage(int page,int limit);
