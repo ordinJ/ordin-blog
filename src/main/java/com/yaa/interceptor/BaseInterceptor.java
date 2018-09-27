@@ -46,12 +46,13 @@ public class BaseInterceptor implements HandlerInterceptor {
             return true;
         }
         //请求拦截处理(后台)
-        if (uri.equals(contextPath + "/admin") || uri.equals(contextPath + "/admin/")) {
+        if (uri.startsWith(contextPath + "/admin")) {
+            if(user == null && !uri.equals("/admin/login")){
+                response.sendRedirect(request.getContextPath() + "/admin/login");
+                return false;
+            }
             if(user != null && !uri.equals("/admin/index")){
                 response.sendRedirect(request.getContextPath() + "/admin/index");
-                return false;
-            }else{
-                response.sendRedirect(request.getContextPath() + "/admin/login");
                 return false;
             }
         }
