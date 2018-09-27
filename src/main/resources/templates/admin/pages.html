@@ -100,7 +100,11 @@
                 method: "POST",
                 data: {"id": id},
                 success: function (result) {
-                    location.reload();
+                    if(result.success){
+                        location.reload();
+                    }else{
+                        layer.msg(result.msg, {icon: 2})
+                    }
                 }
             })
         }, function () {

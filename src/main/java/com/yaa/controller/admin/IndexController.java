@@ -44,24 +44,5 @@ public class IndexController extends BaseController {
     }
 
 
-    /**
-     * 分类/标签页
-     * @return
-     */
-    @RequestMapping(value = "/category")
-    public String category(HttpServletRequest request){
-        request.setAttribute("active","true");
-        return "admin/category";
-    }
-
-    /**
-     * 系统设置页
-     * @return
-     */
-    @RequestMapping(value = "/setting")
-    public String setting(HttpServletRequest request){
-        request.setAttribute("active","setting");
-        return "admin/setting";
-    }
 
 }

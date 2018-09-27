@@ -10,6 +10,7 @@ import com.yaa.service.CommentService;
 import com.yaa.service.ContentService;
 import com.yaa.util.BlogUtils;
 import com.yaa.util.TimeUtils;
+import com.yaa.util.Tools;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
@@ -36,6 +37,9 @@ public final class Commons {
     }
 
     private static final String[] ICONS = {"bg-ico-book", "bg-ico-game", "bg-ico-note", "bg-ico-chat", "bg-ico-code", "bg-ico-image", "bg-ico-web", "bg-ico-link", "bg-ico-design", "bg-ico-lock"};
+
+    private static final String[] COLORS = {"default", "primary", "success", "info", "warning", "danger", "inverse", "purple", "pink"};
+
 
     /**
      * 网站链接
@@ -133,6 +137,15 @@ public final class Commons {
      */
     public static String show_icon(int cid) {
         return ICONS[cid % ICONS.length];
+    }
+
+    /**
+     * 标签颜色
+     * @return
+     */
+    public static String rand_color() {
+        int r = Tools.rand(0, COLORS.length - 1);
+        return COLORS[r];
     }
 
 

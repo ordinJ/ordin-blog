@@ -11,10 +11,6 @@
             <h3>
                 类型管理
             </h3>
-            <!--<ol class="breadcrumb">-->
-            <!--<li><a href="#"><i class="fa fa-dashboard"></i> </a></li>-->
-            <!--<li class="active">Dashboard</li>-->
-            <!--</ol>-->
         </section>
         <section class="content">
             <div class="row">
@@ -24,37 +20,22 @@
                             <h1 class="panel-title">分类列表</h1>
                         </div>
                         <div class="panel-body">
+                            <th:block th:each="cate : ${category}">
                             <div class="btn-group m-b-10">
-                                <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Notes (3) <span class="caret"></span></button>
+                                <button type="button" th:class="'btn btn-'+${commons.rand_color()}+' dropdown-toggle waves-effect waves-light'"
+                                        data-toggle="dropdown" th:text="${cate.metas.name}+'('+${cate.count}+')'" aria-expanded="false">
+                                    <span class="caret"></span>
+                                </button>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="javascript:void(0)" class="edit-category">修改</a></li>
-                                    <li><a href="javascript:void(0)" class="del-category">删除</a></li>
-                                </ul>
-                            </div>
-                            <div class="btn-group m-b-10">
-                                <button type="button" class="btn btn-danger dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false">Daily (2) <span class="caret"></span></button>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="javascript:void(0)" mid="14" cname="Daily" class="edit-category">修改</a>
+                                    <li>
+                                        <a th:onclick="'editCategory('+${cate.metas.mid}+',\''+${cate.metas.name}+'\')'" href="javascript:void(0)" class="edit-category">修改</a>
                                     </li>
-                                    <li><a href="javascript:void(0)" mid="14" class="del-category">删除</a></li>
-                                </ul>
-                            </div>
-                            <div class="btn-group m-b-10">
-                                <button type="button" class="btn btn-info dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false">Tutorials (2) <span class="caret"></span></button>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="javascript:void(0)" mid="13" cname="Tutorials" class="edit-category">修改</a>
+                                    <li>
+                                        <a th:onclick="'delCate('+${cate.metas.mid}+',\'cate\')'" href="javascript:void(0)" class="del-category">删除</a>
                                     </li>
-                                    <li><a href="javascript:void(0)" mid="13" class="del-category">删除</a></li>
                                 </ul>
                             </div>
-                            <div class="btn-group m-b-10">
-                                <button type="button" class="btn btn-success dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false">Music (1) <span class="caret"></span></button>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="javascript:void(0)" mid="15" cname="Music" class="edit-category">修改</a>
-                                    </li>
-                                    <li><a href="javascript:void(0)" mid="15" class="del-category">删除</a></li>
-                                </ul>
-                            </div>
+                            </th:block>
                         </div>
                     </div>
                     <!-- /.box -->
@@ -65,66 +46,17 @@
                             <h1 class="panel-title">标签列表</h1>
                         </div>
                         <div class="panel-body">
+                            <th:block th:each="tag : ${tags}">
                             <div class="btn-group m-b-10">
-                                <button type="button" class="btn btn-purple dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false">JavaScript (2) <span class="caret"></span></button>
+                                <button type="button" th:class="'btn btn-'+${commons.rand_color()}+' dropdown-toggle waves-effect waves-light'"
+                                        data-toggle="dropdown" th:text="${tag.metas.name}+'('+${tag.count}+')'" aria-expanded="false">
+                                    <span class="caret"></span>
+                                </button>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="javascript:void(0)" mid="20" class="del-category">删除</a></li>
+                                    <li><a th:onclick="'delCate('+${tag.metas.mid}+',\'tag\')'" href="javascript:void(0)" mid="20" class="del-category">删除</a></li>
                                 </ul>
                             </div>
-                            <div class="btn-group m-b-10">
-                                <button type="button" class="btn btn-info dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false">Linux (2) <span class="caret"></span></button>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="javascript:void(0)" mid="10" class="del-category">删除</a></li>
-                                </ul>
-                            </div>
-                            <div class="btn-group m-b-10">
-                                <button type="button" class="btn btn-danger dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false">Cookie (1) <span class="caret"></span></button>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="javascript:void(0)" mid="21" class="del-category">删除</a></li>
-                                </ul>
-                            </div>
-                            <div class="btn-group m-b-10">
-                                <button type="button" class="btn btn-danger dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false">jQuery (1) <span class="caret"></span></button>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="javascript:void(0)" mid="19" class="del-category">删除</a></li>
-                                </ul>
-                            </div>
-                            <div class="btn-group m-b-10">
-                                <button type="button" class="btn btn-success dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false">Shell (1) <span class="caret"></span></button>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="javascript:void(0)" mid="18" class="del-category">删除</a></li>
-                                </ul>
-                            </div>
-                            <div class="btn-group m-b-10">
-                                <button type="button" class="btn btn-purple dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false">日志 (1) <span class="caret"></span></button>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="javascript:void(0)" mid="17" class="del-category">删除</a></li>
-                                </ul>
-                            </div>
-                            <div class="btn-group m-b-10">
-                                <button type="button" class="btn btn-warning dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false">博客 (1) <span class="caret"></span></button>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="javascript:void(0)" mid="16" class="del-category">删除</a></li>
-                                </ul>
-                            </div>
-                            <div class="btn-group m-b-10">
-                                <button type="button" class="btn btn-default dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false">MYSQL (1) <span class="caret"></span></button>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="javascript:void(0)" mid="9" class="del-category">删除</a></li>
-                                </ul>
-                            </div>
-                            <div class="btn-group m-b-10">
-                                <button type="button" class="btn btn-success dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false">SSH (1) <span class="caret"></span></button>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="javascript:void(0)" mid="6" class="del-category">删除</a></li>
-                                </ul>
-                            </div>
-                            <div class="btn-group m-b-10">
-                                <button type="button" class="btn btn-purple dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false">音乐 (1) <span class="caret"></span></button>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="javascript:void(0)" mid="4" class="del-category">删除</a></li>
-                                </ul>
-                            </div>
+                            </th:block>
                         </div>
                     </div>
                 </div>
@@ -136,7 +68,9 @@
                                 <div class="form-group">
                                     <input type="text" class="form-control" id="cname" placeholder="请输入分类名称">
                                 </div>
-                                <button id="save-category-btn" type="button" class="btn btn-success waves-effect waves-light m-l-10">保存分类
+                                <button onclick="saveCategory()" id="save-category-btn" type="button"
+                                        class="btn btn-success waves-effect waves-light m-l-10">
+                                    保存分类
                                 </button>
                             </form>
                         </div>
@@ -149,4 +83,51 @@
     <div th:replace="admin/footer::footer"></div>
 </div>
 </body>
+<script>
+    layui.use('layer', function() {
+    });
+    function editCategory(id,name) {
+        $("#mid").val(id);
+        $("#cname").val(name);
+    }
+    function saveCategory() {
+        var mid = $("#mid").val();
+        var url = mid == '' ? '/admin/category/add' : '/admin/category/update';
+        $.ajax({
+            url: url,
+            method: 'POST',
+            data: {
+                mid: $("#mid").val(),
+                name: $("#cname").val(),
+            },
+            success: function (result) {
+                if (result.success) {
+                    location.reload();
+                } else {
+                    layer.msg(result.msg, {icon: 2})
+                }
+            }
+        })
+    }
+
+    function delCate(id,type) {
+        var url = type == 'cate' ? '/admin/category/deleteCate':'/admin/category/deleteTag';
+        layer.confirm('是否删除？', {
+            btn: ['是','否'] //按钮
+        }, function(){
+            $.ajax({
+                url: url,
+                method: "POST",
+                data: {"id": id},
+                success: function (result) {
+                    if(result.success){
+                        location.reload();
+                    }else{
+                        layer.msg(result.msg, {icon: 2})
+                    }
+                }
+            })
+        }, function(){});
+    }
+</script>
 </html>

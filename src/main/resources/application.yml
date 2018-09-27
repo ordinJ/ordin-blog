@@ -53,9 +53,16 @@ spring:
         type: com.alibaba.druid.pool.DruidDataSource
         dbcp2:
            test-on-borrow: true
+           test-while-idle: true
            time-between-eviction-runs-millis: 3600000
+           min-evictable-idle-time-millis: 300000
            remove-abandoned-on-borrow: true
            remove-abandoned-timeout: 1800
+           max-wait-millis: 60000
+           initial-size: 5
+           min-idle: 5
+           max-idle: 20
+           max-total: 20
            validation-query: SELECT 1
 
 server:

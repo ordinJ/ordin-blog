@@ -58,6 +58,7 @@ public class ResponseBo<T> {
         this.timestamp = System.currentTimeMillis() / 1000;
         this.success = success;
         this.msg = msg;
+        this.code = 1;
     }
 
     public ResponseBo(boolean success, String msg, int code) {

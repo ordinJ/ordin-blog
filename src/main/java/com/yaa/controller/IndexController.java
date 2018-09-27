@@ -194,6 +194,9 @@ public class IndexController extends BaseController{
         if (comments.getCoid() != null) {
             comments.setParent(comments.getCoid());
         }
+        if(comments.getAuthorId() == null){
+            comments.setStatus("1");
+        }
         if(StringUtils.isBlank(comments.getAuthor())){
             return ResponseBo.fail("姓名不能为空");
         }
