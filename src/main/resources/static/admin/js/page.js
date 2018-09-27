@@ -8,11 +8,11 @@ function subPage(status) {
     var title = $('#pageForm input[name=title]').val();
     var content = $('#md_editor').val();
     if (title == '') {
-        layer.msg('请输入文章标题');
+        layer.msg('请输入页面标题');
         return;
     }
     if (content == '') {
-        layer.msg('请输入文章内容');
+        layer.msg('请输入也页面内容');
         return;
     }
     $("#status").val(status);
