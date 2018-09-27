@@ -51,7 +51,7 @@ public class BaseInterceptor implements HandlerInterceptor {
                 response.sendRedirect(request.getContextPath() + "/admin/login");
                 return false;
             }
-            if(user != null && !uri.equals("/admin/index")){
+            if(user != null && (uri.equals("/admin") || uri.equals("/admin/"))){
                 response.sendRedirect(request.getContextPath() + "/admin/index");
                 return false;
             }
