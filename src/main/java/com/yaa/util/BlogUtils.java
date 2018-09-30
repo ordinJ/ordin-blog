@@ -6,6 +6,7 @@ import com.sun.syndication.feed.rss.Item;
 import com.sun.syndication.io.FeedException;
 import com.sun.syndication.io.WireFeedOutput;
 import com.yaa.constant.WebConst;
+import com.yaa.controller.admin.AttachController;
 import com.yaa.extension.Commons;
 import com.yaa.model.Contents;
 import com.yaa.model.Users;
@@ -18,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.awt.*;
 import java.io.File;
+import java.io.InputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.*;
@@ -118,10 +120,7 @@ public class BlogUtils {
      * @param imageFile
      * @return
      */
-    public static boolean isImage(File imageFile) {
-        if (!imageFile.exists()) {
-            return false;
-        }
+    public static boolean isImage(InputStream imageFile) {
         try {
             Image img = ImageIO.read(imageFile);
             if (img == null || img.getWidth(null) <= 0 || img.getHeight(null) <= 0) {
@@ -131,6 +130,39 @@ public class BlogUtils {
         } catch (Exception e) {
             return false;
         }
+    }
+
+    public static String getFilePath(String fKey,String path) {
+//        String prefix = "upload/" + DateKit.dateFormat(new Date(), "yyyy/MM");
+//        if (!new File(path + prefix).exists()) {
+//            new File(path + prefix).mkdirs();
+//        }
+        if (!new File(path).exists()) {
+            new File(path).mkdirs();
+        }
+
+        fKey = StringUtils.trimToNull(fKey);
+        if (fKey == null) {
+            return null;
+        } else {
+            return path + "/" + fKey;
+        }
+    }
+
+    /**
+     * 获取文件后缀名
+     * @param name
+     * @return
+     */
+    public static String getFileExt(String name){
+        name = name.replace('\\', '/');
+        name = name.substring(name.lastIndexOf("/") + 1);
+        int index = name.lastIndexOf(".");
+        String ext = null;
+        if (index >= 0) {
+            ext = StringUtils.trimToNull(name.substring(index + 1));
+        }
+        return ext;
     }
 
     /**

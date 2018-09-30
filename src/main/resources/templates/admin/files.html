@@ -27,7 +27,7 @@
                         <form class="form-horizontal">
                             <div class="box-body">
                                 <div class="col-md-12">
-                                    <div class="layui-upload-drag" id="test10">
+                                    <div class="layui-upload-drag" id="file">
                                         <i class="layui-icon"></i>
                                         <p>点击上传，或将文件拖拽到此处</p>
                                     </div>
@@ -43,48 +43,28 @@
                         <!-- form start -->
                         <form class="form-horizontal">
                             <div class="box-body">
+                                <th:block th:each="attach : ${attachs.list}">
                                 <div class="col-md-2 text-center m-t-10">
-                                    <a href="http://yangxs.oss-cn-beijing.aliyuncs.com/article/2018/02/7lt38sn21ci3qobfpach5r9cm7.jpg" target="_blank">
-                                        <img class="attach-img" src=" http://yangxs.oss-cn-beijing.aliyuncs.com/article/2018/02/7lt38sn21ci3qobfpach5r9cm7.jpg " title="a4.jpg">
+                                    <a th:href="'../files/'+${attach.fkey}" target="_blank">
+                                        <img class="attach-img" th:src="'../files/'+${attach.fkey}" th:title="${attach.fname}">
                                     </a>
                                     <div class="clearfix m-t-10">
-                                        <span class="attach-text" data-toggle="tooltip" data-placement="top" data-original-title="a4.jpg">a4.jpg</span>
+                                        <span class="attach-text" th:text="${attach.fname}" data-toggle="tooltip" data-placement="top" th:data-original-title="${attach.fname}"></span>
                                     </div>
                                     <div class="clearfix">
-                                        <button url="http://yangxs.oss-cn-beijing.aliyuncs.com/article/2018/02/7lt38sn21ci3qobfpach5r9cm7.jpg" type="button" class="btn btn-warning btn-sm waves-effect waves-light m-t-5 copy">
+                                        <button th:attr="url=${commons.site_url()}+'/files/'+${attach.fkey}" type="button" class="btn btn-warning btn-sm waves-effect waves-light m-t-5 copy">
                                             <i class="fa fa-copy"></i> <span>复制</span>
                                         </button>
-                                        <button type="button" class="btn btn-danger btn-sm waves-effect waves-light m-t-5" onclick="delAttach(10);">
+                                        <button th:onclick="'deleteFile('+${attach.id}+')'" type="button" class="btn btn-danger btn-sm waves-effect waves-light m-t-5" onclick="delAttach(10);">
                                             <i class="fa fa-trash-o"></i> <span>删除</span>
                                         </button>
                                     </div>
                                 </div>
-                                <div class="col-md-2 text-center m-t-10">
-                                    <a href="http://yangxs.oss-cn-beijing.aliyuncs.com/article/2018/08/ujt9mjr5lui6hrijcogtf20ldu.jpg" target="_blank">
-                                        <img class="attach-img" src=" http://yangxs.oss-cn-beijing.aliyuncs.com/article/2018/08/ujt9mjr5lui6hrijcogtf20ldu.jpg " title="a2.jpg">
-                                    </a>
-                                    <div class="clearfix m-t-10">
-                                        <span class="attach-text" data-toggle="tooltip" data-placement="top" data-original-title="a2.jpg">a2.jpg</span>
-                                    </div>
-                                    <div class="clearfix">
-                                        <button url="http://yangxs.oss-cn-beijing.aliyuncs.com/article/2018/08/ujt9mjr5lui6hrijcogtf20ldu.jpg" type="button" class="btn btn-warning btn-sm waves-effect waves-light m-t-5 copy">
-                                            <i class="fa fa-copy"></i> <span>复制</span>
-                                        </button>
-                                        <button type="button" class="btn btn-danger btn-sm waves-effect waves-light m-t-5" onclick="delAttach(11);">
-                                            <i class="fa fa-trash-o"></i> <span>删除</span>
-                                        </button>
-                                    </div>
-                                </div>
+                                </th:block>
                             </div>
                             <!-- /.box-body -->
                             <div class="box-footer">
-                                <ul class="pagination pagination-sm no-margin pull-right">
-                                    <li><a href="#">«</a></li>
-                                    <li><a href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li><a href="#">»</a></li>
-                                </ul>
+                                <div th:replace="comm/macros :: pageAdminNav(${attachs})"></div>
                             </div>
                             <!-- /.box-footer -->
                         </form>
@@ -97,19 +77,50 @@
     <div th:replace="admin/footer::footer"></div>
 </div>
 </body>
+<script src="//cdn.bootcss.com/clipboard.js/1.6.0/clipboard.min.js"></script>
 <script>
     layui.use('upload', function(){
-        var $ = layui.jquery
-            ,upload = layui.upload;
-
-        //拖拽上传
-        upload.render({
-            elem: '#test10'
-            ,url: '/upload/'
-            ,done: function(res){
-                console.log(res)
+        var upload = layui.upload;
+        //执行实例
+        var uploadInst = upload.render({
+            elem: '#file', //绑定元素
+            url: '/admin/files/upload' ,//上传接口
+            done: function(res){
+                //上传完毕回调
+                if(res.success){
+                    location.href = "/admin/files";
+                }else{
+                    layer.msg(res.msg,{icon:2})
+                }
+            }
+            ,error: function(){
+                //请求异常回调
             }
         });
     });
+
+    var clipboard = new Clipboard('button.copy', {
+        text: function (trigger) {
+            return $(trigger).attr('url');
+        }
+    });
+    clipboard.on('success', function (e) {
+        layer.msg("复制成功",{icon:1})
+    });
+    
+    function deleteFile(id) {
+        $.ajax({
+            url:'/admin/files/delete',
+            method:'POST',
+            data:{id:id},
+            success:function (res) {
+                if(res.success){
+                    location.href = "/admin/files";
+                }else{
+                    layer.msg(res.msg,{icon:2})
+                }
+            }
+        })
+    }
 </script>
 </html>

@@ -31,18 +31,4 @@ public class IndexController extends BaseController {
         return "admin/index";
     }
 
-
-
-    /**
-     * 文件管理页
-     * @return
-     */
-    @RequestMapping(value = "/files")
-    public String files(HttpServletRequest request){
-        request.setAttribute("active","files");
-        return "admin/files";
-    }
-
-
-
 }
