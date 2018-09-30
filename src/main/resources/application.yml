@@ -74,5 +74,5 @@ server:
 logging:
   file: /opt/blog/log/site.log
 blog:   #自定义属性
-  filePath: /var/uploaded_files/
+  filePath: /opt/blog/files/
   database: blog
