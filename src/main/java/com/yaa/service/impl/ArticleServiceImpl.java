@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -78,6 +79,7 @@ public class ArticleServiceImpl implements ArticleService {
         if(contents==null){
             return ResponseBo.fail("参数错误");
         }
+        validateTags(contents);
         contents.setModified(DateKit.getCurrentUnixTime());
         int count = contentsMapper.updateByPrimaryKeySelective(contents);
         if(count > 0){
@@ -91,6 +93,7 @@ public class ArticleServiceImpl implements ArticleService {
         if(contents==null){
             return ResponseBo.fail("参数错误");
         }
+        validateTags(contents);
         contents.setAuthorId(users.getUid());
         contents.setCreated(DateKit.getCurrentUnixTime());
         contents.setType(Types.ARTICLE.getType());
@@ -100,10 +103,30 @@ public class ArticleServiceImpl implements ArticleService {
         if (StringUtils.isBlank(contents.getCategories())) {
             contents.setCategories("默认分类");
         }
-        int count = contentsMapper.insert(contents);
+        int count = contentsMapper.insertSelective(contents);
         if(count > 0){
-            return ResponseBo.ok("保存成功！");
+            ResponseBo responseBo = ResponseBo.ok("保存成功");
+            responseBo.setPayload(contents);
+            return responseBo;
         }
         return ResponseBo.fail("error");
+    }
+
+    private void validateTags(Contents contents){
+        List<String> tags = Arrays.asList(contents.getTags().split(","));
+        if(tags!= null && tags.size()>0){
+            for(String tag : tags){
+                MetasExample tagex = new MetasExample();
+                tagex.createCriteria().andTypeEqualTo(Types.TAG.getType()).andNameEqualTo(tag);
+                int count = metasMapper.countByExample(tagex);
+                if(count <= 0){
+                    Metas metas = new Metas();
+                    metas.setType(Types.TAG.getType());
+                    metas.setName(tag);
+                    metas.setSlug(tag);
+                    metasMapper.insertSelective(metas);
+                }
+            }
+        }
     }
 }
