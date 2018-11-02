@@ -11,6 +11,10 @@ public class PathConfig {
 
     private String database;
 
+    private String mysqlExec;
+
+    private String backupPath;
+
     public String getFilePath() {
         return filePath;
     }
@@ -25,5 +29,21 @@ public class PathConfig {
 
     public void setDatabase(String database) {
         this.database = database;
+    }
+
+    public String getMysqlExec() {
+        return mysqlExec;
+    }
+
+    public void setMysqlExec(String mysqlExec) {
+        this.mysqlExec = mysqlExec;
+    }
+
+    public String getBackupPath() {
+        return backupPath;
+    }
+
+    public void setBackupPath(String backupPath) {
+        this.backupPath = backupPath;
     }
 }

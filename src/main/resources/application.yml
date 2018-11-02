@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: prod
+    active: local
 #mybatis配置
 mybatis:
   configuration:
@@ -39,6 +39,8 @@ logging:
 blog:   #自定义属性
   filePath: D:/var/uploaded_files/
   database: blog
+  mysqlExec: D:/mysql/mysql-5.7.16-winx64/bin/mysqldump -uroot -p123456 blog
+  backupPath: D:/blog/backup/
 ---
 spring:
    profiles: prod
@@ -76,3 +78,5 @@ logging:
 blog:   #自定义属性
   filePath: /opt/blog/files/
   database: blog
+  mysqlExec: /usr/bin/mysqldump -uroot -pMysql2018!@#$ blog
+  backupPath: /opt/blog/backup/

@@ -1,5 +1,6 @@
 package com.yaa.controller.admin;
 
+import com.yaa.config.PathConfig;
 import com.yaa.constant.WebConst;
 import com.yaa.controller.base.BaseController;
 import com.yaa.model.bo.ResponseBo;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,6 +23,8 @@ public class SettingController extends BaseController {
 
     @Autowired
     private SettingService settingService;
+    @Autowired
+    private PathConfig pathConfig;
 
     /**
      * 系统设置页
@@ -63,6 +68,62 @@ public class SettingController extends BaseController {
             WebConst.initConfig.put(key,join(value));
         });
         return settingService.saveSite(querys);
+    }
+
+    @RequestMapping(value = "/backup")
+    public void backup(HttpServletResponse response) {
+        try {
+            //导出数据库
+            Runtime rt = Runtime.getRuntime();
+            Process child = rt.exec(pathConfig.getMysqlExec() + "");
+            InputStream backupIn = child.getInputStream();
+            InputStreamReader backupReader = new InputStreamReader(backupIn, "utf8");
+            StringBuffer result = new StringBuffer("");
+            BufferedReader br = new BufferedReader(backupReader);
+            String instr = "";
+            while ((instr = br.readLine()) != null) {
+                result.append(instr + "\r\n");
+            }
+            String backupPath = pathConfig.getBackupPath();
+            if (!new File(backupPath).exists()) {
+                new File(backupPath).mkdirs();
+            }
+            FileOutputStream fout = new FileOutputStream(backupPath + "backup.sql");
+            OutputStreamWriter writer = new OutputStreamWriter(fout, "utf8");
+            writer.write(result.toString());
+            writer.flush();
+            backupIn.close();
+            backupReader.close();
+            br.close();
+            writer.close();
+            fout.close();
+            //下载文件
+            String filePath = pathConfig.getBackupPath();
+            response.setHeader("content-type", "application/octet-stream");
+            response.setContentType("application/octet-stream");
+            response.setHeader("Content-Disposition", "attachment;filename=backup.sql");
+            byte[] buff = new byte[1024];
+            BufferedInputStream bis = null;
+            OutputStream os = null;
+            os = response.getOutputStream();
+            bis = new BufferedInputStream(new FileInputStream(new File(filePath + "backup.sql")));
+            int i = bis.read(buff);
+            while (i != -1) {
+                os.write(buff, 0, buff.length);
+                os.flush();
+                i = bis.read(buff);
+            }
+            if (bis != null) {
+                try {
+                    bis.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
