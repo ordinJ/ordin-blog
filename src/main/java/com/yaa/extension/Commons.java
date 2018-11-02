@@ -281,7 +281,8 @@ public final class Commons {
      * @return
      */
     public static String gravatar(String email) {
-        String avatarUrl = "https://github.com/identicons/";
+        String avatarUrl = "https://secure.gravatar.com/avatar/";
+//        String avatarUrl = "https://github.com/identicons/";
         if (StringUtils.isBlank(email)) {
             email = "yanghbwork@163.com";
         }
