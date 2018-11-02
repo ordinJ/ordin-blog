@@ -28,6 +28,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.List;
 
@@ -166,6 +168,10 @@ public class IndexController extends BaseController{
      */
     @RequestMapping(value = "/tag/{name}")
     public String searchTag(HttpServletRequest request,@PathVariable String name){
+        try {
+            name = URLDecoder.decode(name, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+        }
         List<Contents> articles = contentService.getContentsByTags(name);
         request.setAttribute("type","标签");
         request.setAttribute("key",name);
