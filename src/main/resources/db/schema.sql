@@ -153,19 +153,8 @@ CREATE TABLE `bl_metas` (
 -- Records of bl_metas
 -- ----------------------------
 INSERT INTO `bl_metas` VALUES ('4', '音乐', '音乐', 'tag', null, '0', '0');
-INSERT INTO `bl_metas` VALUES ('6', 'SSH', 'SSH', 'tag', null, '0', '0');
-INSERT INTO `bl_metas` VALUES ('9', 'MYSQL', 'MYSQL', 'tag', null, '0', '0');
-INSERT INTO `bl_metas` VALUES ('10', 'Linux', 'Linux', 'tag', null, '0', '0');
-INSERT INTO `bl_metas` VALUES ('12', 'Notes', null, 'category', null, '0', '0');
-INSERT INTO `bl_metas` VALUES ('13', 'Tutorials', null, 'category', null, '0', '0');
-INSERT INTO `bl_metas` VALUES ('14', 'Daily', null, 'category', null, '0', '0');
-INSERT INTO `bl_metas` VALUES ('15', 'Music', null, 'category', null, '0', '0');
 INSERT INTO `bl_metas` VALUES ('16', '博客', '博客', 'tag', null, '0', '0');
 INSERT INTO `bl_metas` VALUES ('17', '日志', '日志', 'tag', null, '0', '0');
-INSERT INTO `bl_metas` VALUES ('18', 'Shell', 'Shell', 'tag', null, '0', '0');
-INSERT INTO `bl_metas` VALUES ('19', 'jQuery', 'jQuery', 'tag', null, '0', '0');
-INSERT INTO `bl_metas` VALUES ('20', 'JavaScript', 'JavaScript', 'tag', null, '0', '0');
-INSERT INTO `bl_metas` VALUES ('21', 'Cookie', 'Cookie', 'tag', null, '0', '0');
 
 -- ----------------------------
 -- Table structure for bl_options
