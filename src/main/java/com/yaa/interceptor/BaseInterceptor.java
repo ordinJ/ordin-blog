@@ -41,9 +41,13 @@ public class BaseInterceptor implements HandlerInterceptor {
                 request.getSession().setAttribute(WebConst.LOGIN_SESSION_KEY, user);
             }
         }
-        //静态资源不拦截
-        if(uri.contains("css") || uri.contains("js") || uri.contains("fonts")){
-            return true;
+//        //静态资源不拦截
+//        if(uri.contains("css") || uri.contains("js") || uri.contains("fonts")){
+//            return true;
+//        }
+        if("0".equals(WebConst.initConfig.get("allow_install")) && !uri.startsWith(contextPath+"/install")){
+            response.sendRedirect(request.getContextPath() + "/install");
+            return false;
         }
         //请求拦截处理(后台)
         if (uri.startsWith(contextPath + "/admin")) {

@@ -19,7 +19,7 @@
 <body class="bg-grey">
 <header id="header" class="header bg-white">
     <div class="navbar-container">
-        <a th:href="@{/}" class="navbar-logo">
+        <a th:href="${commons.site_url()}" class="navbar-logo">
             <img th:src="@{/themes/img/logo.png}" alt=""/>
             <!--<img src="${logo_url')}" alt="${site_title()}"/>-->
         </a>
@@ -82,7 +82,6 @@
             <button class="sumbits">保存设置</button>
         </p>
     </div>
-
 </article>
 </body>
 </html>

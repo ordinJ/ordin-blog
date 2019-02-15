@@ -45,6 +45,15 @@ public class IndexController extends BaseController{
     @Autowired
     private CommentService commentService;
 
+
+    /**
+     * 安装页
+     */
+    @RequestMapping(value = "/install")
+    public String install(){
+        return this.render("install");
+    }
+
     /**
      * 首页
      * @param request

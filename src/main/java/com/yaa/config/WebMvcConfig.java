@@ -7,6 +7,8 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+import java.util.Arrays;
+
 @Configuration
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
@@ -26,7 +28,8 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
         // addPathPatterns 用于添加拦截规则
         // excludePathPatterns 用户排除拦截
         //在Spring添加拦截器之前先自己创建一下这个Spring Bean，这样就能在Spring映射这个拦截器前，把拦截器中的依赖注入给完成了。
-        registry.addInterceptor(baseInterceptor).addPathPatterns("/**");
+        registry.addInterceptor(baseInterceptor).addPathPatterns("/**")
+                .excludePathPatterns(Arrays.asList("/themes/css/**","/themes/js/**","/themes/font/**","/themes/img/**"));
         super.addInterceptors(registry);
     }
 }
