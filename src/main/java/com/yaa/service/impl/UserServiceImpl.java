@@ -3,6 +3,7 @@ package com.yaa.service.impl;
 import com.yaa.constant.WebConst;
 import com.yaa.mapper.UsersMapper;
 import com.yaa.model.Users;
+import com.yaa.model.bo.InstallBo;
 import com.yaa.model.bo.ResponseBo;
 import com.yaa.model.vo.UsersExample;
 import com.yaa.model.vo.UsersExample.Criteria;
@@ -50,5 +51,17 @@ public class UserServiceImpl implements UserService {
         }
         request.getSession().setAttribute(WebConst.LOGIN_SESSION_KEY, userVos.get(0));
         return ResponseBo.ok();
+    }
+
+    @Override
+    public int createUser(InstallBo installBo) {
+        String username = installBo.getAccount();
+        String password = installBo.getPassword();
+        String pwd = BlogUtils.MD5encode(username + password);
+        Users user = new Users();
+        user.setEmail(installBo.getEmail());
+        user.setUsername(username);
+        user.setPassword(pwd);
+        return usersMapper.insert(user);
     }
 }

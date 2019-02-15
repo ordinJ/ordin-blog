@@ -29,7 +29,8 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
         // excludePathPatterns 用户排除拦截
         //在Spring添加拦截器之前先自己创建一下这个Spring Bean，这样就能在Spring映射这个拦截器前，把拦截器中的依赖注入给完成了。
         registry.addInterceptor(baseInterceptor).addPathPatterns("/**")
-                .excludePathPatterns(Arrays.asList("/themes/css/**","/themes/js/**","/themes/font/**","/themes/img/**"));
+                .excludePathPatterns(Arrays.asList("/themes/css/**","/themes/js/**","/themes/img/**",
+                        "/admin/css/**","/admin/fonts/**","/admin/js/**","/admin/layui/**"));
         super.addInterceptors(registry);
     }
 }

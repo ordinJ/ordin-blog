@@ -8,12 +8,10 @@ import com.yaa.dto.ErrorCode;
 import com.yaa.dto.Types;
 import com.yaa.model.Comments;
 import com.yaa.model.Contents;
-import com.yaa.model.bo.ArchiveBo;
-import com.yaa.model.bo.CommentBo;
-import com.yaa.model.bo.MetasBo;
-import com.yaa.model.bo.ResponseBo;
+import com.yaa.model.bo.*;
 import com.yaa.service.CommentService;
 import com.yaa.service.ContentService;
+import com.yaa.service.InstallService;
 import com.yaa.service.MetasService;
 import com.yaa.util.BlogUtils;
 import com.yaa.util.DateKit;
@@ -44,14 +42,28 @@ public class IndexController extends BaseController{
     private MetasService metasService;
     @Autowired
     private CommentService commentService;
+    @Autowired
+    private InstallService installService;
 
 
     /**
      * 安装页
      */
     @RequestMapping(value = "/install")
-    public String install(){
+    public String install(HttpServletRequest request){
+        if("1".equals(WebConst.initConfig.get("allow_install"))){
+            return this.render404();
+        }
         return this.render("install");
+    }
+
+    /**
+     * 安装保存数值
+     */
+    @ResponseBody
+    @RequestMapping(value = "/install/save")
+    public ResponseBo saveInstall(InstallBo install){
+        return installService.saveInstall(install);
     }
 
     /**

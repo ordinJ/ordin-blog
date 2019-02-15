@@ -37,24 +37,24 @@ INSERT INTO `bl_attach` VALUES ('10', 'a4.jpg', 'image', 'article/2018/02/7lt38s
 -- ----------------------------
 -- Table structure for bl_code_task
 -- ----------------------------
-DROP TABLE IF EXISTS `bl_code_task`;
-CREATE TABLE `bl_code_task` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `msg` varchar(500) DEFAULT NULL,
-  `email` varchar(100) DEFAULT NULL,
-  `status` char(1) DEFAULT '0',
-  `function_name` varchar(100) DEFAULT NULL,
-  `send_time` datetime DEFAULT NULL,
-  `msg_id` varchar(100) DEFAULT NULL,
-  `user_id` decimal(10,0) DEFAULT NULL,
-  `result` varchar(100) DEFAULT '0',
-  `type` varchar(100) DEFAULT NULL,
-  `way` decimal(10,0) DEFAULT NULL,
-  `ip` varchar(100) DEFAULT NULL,
-  `deleted` char(1) DEFAULT '0',
-  `create_time` datetime DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+-- DROP TABLE IF EXISTS `bl_code_task`;
+-- CREATE TABLE `bl_code_task` (
+--   `id` int(11) NOT NULL AUTO_INCREMENT,
+--   `msg` varchar(500) DEFAULT NULL,
+--   `email` varchar(100) DEFAULT NULL,
+--   `status` char(1) DEFAULT '0',
+--   `function_name` varchar(100) DEFAULT NULL,
+--   `send_time` datetime DEFAULT NULL,
+--   `msg_id` varchar(100) DEFAULT NULL,
+--   `user_id` decimal(10,0) DEFAULT NULL,
+--   `result` varchar(100) DEFAULT '0',
+--   `type` varchar(100) DEFAULT NULL,
+--   `way` decimal(10,0) DEFAULT NULL,
+--   `ip` varchar(100) DEFAULT NULL,
+--   `deleted` char(1) DEFAULT '0',
+--   `create_time` datetime DEFAULT CURRENT_TIMESTAMP,
+--   PRIMARY KEY (`id`)
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of bl_code_task
@@ -218,21 +218,21 @@ INSERT INTO `bl_relationships` VALUES ('12', '21');
 -- ----------------------------
 -- Table structure for bl_safe_code
 -- ----------------------------
-DROP TABLE IF EXISTS `bl_safe_code`;
-CREATE TABLE `bl_safe_code` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) DEFAULT NULL,
-  `scene_id` varchar(32) DEFAULT NULL,
-  `open_id` varchar(100) DEFAULT NULL,
-  `s_key` varchar(200) DEFAULT NULL,
-  `s_value` varchar(100) DEFAULT NULL,
-  `scangen_key` varchar(100) DEFAULT NULL,
-  `business_type` varchar(32) DEFAULT NULL,
-  `scan_time` datetime DEFAULT NULL,
-  `expiry_time` datetime DEFAULT NULL,
-  `update_time` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+-- DROP TABLE IF EXISTS `bl_safe_code`;
+-- CREATE TABLE `bl_safe_code` (
+--   `id` int(11) NOT NULL AUTO_INCREMENT,
+--   `user_id` int(11) DEFAULT NULL,
+--   `scene_id` varchar(32) DEFAULT NULL,
+--   `open_id` varchar(100) DEFAULT NULL,
+--   `s_key` varchar(200) DEFAULT NULL,
+--   `s_value` varchar(100) DEFAULT NULL,
+--   `scangen_key` varchar(100) DEFAULT NULL,
+--   `business_type` varchar(32) DEFAULT NULL,
+--   `scan_time` datetime DEFAULT NULL,
+--   `expiry_time` datetime DEFAULT NULL,
+--   `update_time` datetime DEFAULT NULL,
+--   PRIMARY KEY (`id`)
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of bl_safe_code
@@ -256,11 +256,6 @@ CREATE TABLE `bl_users` (
   PRIMARY KEY (`uid`),
   UNIQUE KEY `AK_UNQ_BL_USER_USERNAME` (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of bl_users
--- ----------------------------
-INSERT INTO `bl_users` VALUES ('3', 'admin', '2e4d491a26a987532ef1ba4ed1be4e6d', 'yanghbwork@163.com', null, 'yangxs', '1514440029', null, '1524821204', null);
 
 -- -- ----------------------------
 -- -- Table structure for bl_visited
