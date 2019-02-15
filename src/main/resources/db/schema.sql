@@ -152,14 +152,6 @@ CREATE TABLE `bl_email_task` (
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of bl_email_task
--- ----------------------------
-INSERT INTO `bl_email_task` VALUES ('4', '7', 'admin', '你可不可以不要乱留', '13108901481@163.COM', '1', 'reply', '180.169.128.212', null, '2018-01-18 15:35:08');
-INSERT INTO `bl_email_task` VALUES ('5', '8', 'yangxs', '客气，有博客可以互换下友链~', '310632730@qq.com', '1', 'reply', '180.169.128.212', null, '2018-01-18 15:50:44');
-INSERT INTO `bl_email_task` VALUES ('6', '8', 'jon', 'thanks', 'yanghbwork@163.com', '1', 'reply', '120.79.30.96', null, '2018-04-27 17:26:58');
-INSERT INTO `bl_email_task` VALUES ('7', '8', 'yangxs', 'thanks', 'yanghbwork@163.com', '1', 'reply', '180.169.128.212', null, '2018-04-27 17:27:23');
-
--- ----------------------------
 -- Table structure for bl_metas
 -- ----------------------------
 DROP TABLE IF EXISTS `bl_metas`;
@@ -207,11 +199,11 @@ CREATE TABLE `bl_options` (
 -- Records of bl_options
 -- ----------------------------
 INSERT INTO `bl_options` VALUES ('allow_install', '0', '是否允许重新安装博客');
-INSERT INTO `bl_options` VALUES ('site_description', '博客系统,Blade框架', null);
-INSERT INTO `bl_options` VALUES ('site_keywords', '博客系统,Blade框架', null);
+INSERT INTO `bl_options` VALUES ('site_description', '', null);
+INSERT INTO `bl_options` VALUES ('site_keywords', '', null);
 INSERT INTO `bl_options` VALUES ('site_theme', 'default', null);
-INSERT INTO `bl_options` VALUES ('site_title', '杨先森', null);
-INSERT INTO `bl_options` VALUES ('site_url', 'http://120.79.30.96', null);
+INSERT INTO `bl_options` VALUES ('site_title', '', null);
+INSERT INTO `bl_options` VALUES ('site_url', '', null);
 INSERT INTO `bl_options` VALUES ('social_github', 'yangxsa', null);
 INSERT INTO `bl_options` VALUES ('social_twitter', 'yangxs3', null);
 INSERT INTO `bl_options` VALUES ('social_weibo', '', null);
@@ -298,26 +290,3 @@ CREATE TABLE `bl_users` (
 -- ----------------------------
 INSERT INTO `bl_users` VALUES ('3', 'admin', '2e4d491a26a987532ef1ba4ed1be4e6d', 'yanghbwork@163.com', null, 'yangxs', '1514440029', null, '1524821204', null);
 
--- ----------------------------
--- Table structure for bl_visited
--- ----------------------------
-DROP TABLE IF EXISTS `bl_visited`;
-CREATE TABLE `bl_visited` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) DEFAULT NULL,
-  `ip` varchar(50) DEFAULT NULL,
-  `country` varchar(50) DEFAULT NULL,
-  `area` varchar(50) DEFAULT NULL,
-  `region` varchar(50) DEFAULT NULL,
-  `city` varchar(50) DEFAULT NULL,
-  `county` varchar(50) DEFAULT NULL,
-  `visited_num` int(11) DEFAULT '1',
-  `create_time` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1441 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of bl_visited
--- ----------------------------
-INSERT INTO `bl_visited` VALUES ('1', null, '120.79.30.96', '中国', '华南', '广东省', '深圳市', '', '24', '1516244947');
-INSERT INTO `bl_visited` VALUES ('2', null, '180.169.128.212', '中国', '华东', '上海市', '上海市', '', '192', '1526893002');
