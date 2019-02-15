@@ -130,20 +130,20 @@ INSERT INTO `bl_contents` VALUES ('5', '最近听的歌曲', null, null, '151443
 -- ----------------------------
 -- Table structure for bl_email_task
 -- ----------------------------
-DROP TABLE IF EXISTS `bl_email_task`;
-CREATE TABLE `bl_email_task` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `cid` int(11) DEFAULT NULL,
-  `author` varchar(100) DEFAULT NULL,
-  `msg` varchar(500) DEFAULT NULL,
-  `email` varchar(100) DEFAULT NULL,
-  `status` char(1) DEFAULT '0',
-  `function_name` varchar(100) DEFAULT NULL,
-  `ip` varchar(100) DEFAULT NULL,
-  `send_time` datetime DEFAULT NULL,
-  `create_time` datetime DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+-- DROP TABLE IF EXISTS `bl_email_task`;
+-- CREATE TABLE `bl_email_task` (
+--   `id` int(11) NOT NULL AUTO_INCREMENT,
+--   `cid` int(11) DEFAULT NULL,
+--   `author` varchar(100) DEFAULT NULL,
+--   `msg` varchar(500) DEFAULT NULL,
+--   `email` varchar(100) DEFAULT NULL,
+--   `status` char(1) DEFAULT '0',
+--   `function_name` varchar(100) DEFAULT NULL,
+--   `ip` varchar(100) DEFAULT NULL,
+--   `send_time` datetime DEFAULT NULL,
+--   `create_time` datetime DEFAULT CURRENT_TIMESTAMP,
+--   PRIMARY KEY (`id`)
+-- ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for bl_metas
