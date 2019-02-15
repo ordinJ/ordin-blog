@@ -1,8 +1,8 @@
 package com.yaa.mapper;
 
 import com.yaa.model.Attach;
-import com.yaa.model.vo.AttachExample;
 import java.util.List;
+import com.yaa.model.vo.AttachExample;
 import org.apache.ibatis.annotations.Param;
 
 public interface AttachMapper {

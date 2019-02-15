@@ -181,6 +181,23 @@ public class IndexController extends BaseController{
     }
 
     /**
+     * 分类
+     * @param request
+     * @param keyword
+     * @return
+     */
+    @RequestMapping(value = "/category/{keyword}")
+    public String searchCategories(HttpServletRequest request,@PathVariable String keyword){
+        List<Contents> articles = contentService.getContentsByCategories(keyword);
+        this.title(request,keyword);
+        request.setAttribute("type","分类");
+        request.setAttribute("key",keyword);
+        request.setAttribute("articles",articles);
+        this.title(request,keyword);
+        return this.render("result");
+    }
+
+    /**
      * 游客评论
      * @param request
      * @param response

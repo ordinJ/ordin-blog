@@ -135,4 +135,12 @@ public class ContentServiceImpl implements ContentService {
         List<Contents> contents = contentsMapper.selectByExampleWithBLOBs(example);
         return contents;
     }
+
+    @Override
+    public List<Contents> getContentsByCategories(String keyword) {
+        ContentsExample example = new ContentsExample();
+        example.createCriteria().andCategoriesEqualTo(keyword).andTypeEqualTo(Types.ARTICLE.getType());
+        List<Contents> contents = contentsMapper.selectByExample(example);
+        return contents;
+    }
 }

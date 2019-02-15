@@ -29,4 +29,6 @@ public interface ContentService {
     List<Contents> getNewContents(Integer limit);
 
     List<Contents> getAllowFeedContents();
+
+    List<Contents> getContentsByCategories(String keyword);
 }
