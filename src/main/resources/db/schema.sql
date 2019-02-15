@@ -82,17 +82,6 @@ CREATE TABLE `bl_comments` (
   PRIMARY KEY (`coid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Records of bl_comments
--- ----------------------------
-INSERT INTO `bl_comments` VALUES ('4', '7', '1514514413', '杨光鸿', '0', '0', '1819500@123.com', null, '120.79.30.96', null, '什么鬼啊？那里来的服务器 ', null, null, '0');
-INSERT INTO `bl_comments` VALUES ('5', '7', '1515311572', 'yangxs', '3', '4', 'yanghbwork@163.com', null, '120.79.30.96', null, '当然买的咯~~~', null, null, '4');
-INSERT INTO `bl_comments` VALUES ('6', '7', '1515482754', 'VeraJing', '0', '4', '13108901481@163.COM', null, '120.79.30.96', null, '你是个傻逼吗?', null, null, '4');
-INSERT INTO `bl_comments` VALUES ('7', '7', '1515482843', 'VeraJing', '0', '0', '13108901481@163.COM', 'https://www.baidu.com', '120.79.30.96', null, 'eeeeeee', null, null, '0');
-INSERT INTO `bl_comments` VALUES ('13', '7', '1516260908', 'yangxs', '3', '7', 'yanghbwork@163.com', null, '180.169.128.212', null, '你可不可以不要乱留', null, null, '7');
-INSERT INTO `bl_comments` VALUES ('16', '8', '1524820776', 'jon', '0', '0', 'yanghbwork@163.com', null, '120.79.30.96', null, '顶顶~~~~', null, null, '0');
-INSERT INTO `bl_comments` VALUES ('18', '8', '1524821243', 'yangxs', '3', '16', 'yanghbwork@163.com', null, '180.169.128.212', null, 'thanks', null, null, '16');
-INSERT INTO `bl_comments` VALUES ('26', '7', '1533545174', 'yanghb', '0', '0', 'yanghbwork@163.com', '', '127.0.0.1', null, '1111sdadsadsa', null, null, '0');
 
 -- ----------------------------
 -- Table structure for bl_contents
