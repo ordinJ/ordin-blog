@@ -10,7 +10,9 @@ SpringBoot+Thymeleaf+Mysql+myBatis
 
 演示站点：https://www.mecarserver.xyz/
 
-ps:服务器用来架我接的外块单子了~现在暂停了网站
+ps:服务器忙~现在暂停了网站
+
+项目的一些说明请看[wiki](http://https://gitee.com/yangxsa/site_blog/wikis/Home)
 
 #### 电脑端截图
 
