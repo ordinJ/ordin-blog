@@ -12,7 +12,7 @@ SpringBoot+Thymeleaf+Mysql+myBatis
 
 ps:服务器忙~现在暂停了网站
 
-项目的一些说明请看[wiki](http://https://gitee.com/yangxsa/site_blog/wikis/Home)
+项目的一些说明请看[wiki](https://gitee.com/yangxsa/site_blog/wikis/Home)
 
 #### 电脑端截图
 
