@@ -76,7 +76,10 @@ server:
 logging:
   file: /opt/blog/log/site.log
 blog:   #自定义属性
+  #图片文件存储路径
   filePath: /opt/blog/files/
+  #数据库名称
   database: blog
+  #MYSQL 登录的命令行 /usr/bin/mysqldump -u 用户名 -p 密码（前面路径代表绝对路径）
   mysqlExec: /usr/bin/mysqldump -uroot -pMysql2018!@#$ blog
   backupPath: /opt/blog/backup/
