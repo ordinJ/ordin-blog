@@ -178,7 +178,9 @@
         if (key == 13) {
             var q = $(this).val();
             $("#search").attr('action','/search/' + q);
-            $("#search").submit();
+            if (q && q != '') {
+                $("#search").submit();
+            }
         }
     });
 
