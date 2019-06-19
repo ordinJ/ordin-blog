@@ -4,10 +4,12 @@
 <div th:replace="partial/header::header" ></div>
 <div class="main-content page-page clearfix">
     <div class="search-page">
-        <form role="search" onsubmit="return false;">
-            <span class="search-box">
-                <input type="text" id="search-inp" class="input" placeholder="搜索..." maxlength="30" autocomplete="off">
-                <button type="submit" class="spsubmit"><i class="icon-search"></i></button>
+        <form id="search" class="search-form" method="post" role="search">
+            <span class="search-box clearfix">
+                <input type="text" id="search-inp" class="input" required="true" placeholder="Search..." maxlength="30" autocomplete="off">
+                <button type="submit" class="spsubmit">
+                    <i class="icon-search"></i>
+                </button>
             </span>
         </form>
         <div class="search-tags">

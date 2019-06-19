@@ -142,12 +142,12 @@
 </th:block>
 
 
-<script data-no-instant="" src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-<script data-no-instant="" src="//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js"></script>
-<script data-no-instant="" src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-<script data-no-instant="" th:src="@{/themes/js/headroom.min.js}"></script>
-<script data-no-instant="" th:src="@{/themes/js/instantclick.min.js}"></script>
-<script data-no-instant="" th:inline="javascript">
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js"></script>
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script th:src="@{/themes/js/headroom.min.js}"></script>
+<script th:src="@{/themes/js/instantclick.min.js}"></script>
+<script th:inline="javascript">
     /*<![CDATA[*/
     var isOk = [[${is_post}]];
     if (isOk) {
@@ -177,15 +177,17 @@
         var key = e.which; //e.which是按键的值
         if (key == 13) {
             var q = $(this).val();
-            if (q && q != '') {
-                window.location.href = '/search/' + q;
-            }
+            $("#search").attr('action','/search/' + q);
+            $("#search").submit();
         }
     });
 
     $('.spsubmit').click(function(){
         var q = $('#search-inp').val();
-        window.location.href = '/search/' + q;
+        $("#search").attr('action','/search/' + q);
+        if (q && q != '') {
+            $("#search").submit();
+        }
     });
 
     /*]]>*/
