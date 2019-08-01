@@ -3,13 +3,13 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.yaa.site</groupId>
-	<artifactId>site_blog</artifactId>
+	<groupId>com.ordin.site</groupId>
+	<artifactId>ordin-blog</artifactId>
 	<version>1.0</version>
 	<packaging>jar</packaging>
 
-	<name>site_blog</name>
-	<description>my blog site</description>
+	<name>ordin-blog</name>
+	<description>ordin's blog</description>
 
 	<repositories>
 		<repository>
@@ -130,7 +130,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>site-blog</finalName>
+		<finalName>ordin-blog</finalName>
 		<plugins>
 			<!--打包Jar-->
 			<plugin>
@@ -146,7 +146,7 @@
 						<manifest>
 							<addClasspath>true</addClasspath>
 							<classpathPrefix>../lib/</classpathPrefix>
-							<mainClass>com.yaa.Application</mainClass>
+							<mainClass>com.ordin.Application</mainClass>
 						</manifest>
 					</archive>
 				</configuration>

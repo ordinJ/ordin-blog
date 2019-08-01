@@ -91,7 +91,7 @@ echo "JAVA_OPTS: $JAVA_OPTS"
 # Main farseer class.
 if [ -z "$MAIN_CLASS" ]
 then
-  MAIN_CLASS='com.yaa.Application'
+  MAIN_CLASS='com.ordin.Application'
 fi
 echo "--------------------------------------------------"
 echo "MAIN_CLASS : $MAIN_CLASS"

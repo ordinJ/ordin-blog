@@ -6,18 +6,20 @@ mybatis:
   configuration:
     map-underscore-to-camel-case: true  #按驼峰命名规则自动匹配到实体类上,不需要用别名
   mapper-locations: classpath:mapper/*.xml
-  type-aliases-package: com.yaa.model
+  type-aliases-package: com.ordin.model
 
 ---
 spring:
    profiles: local
+   thymeleaf:
+     cache: false
    mvc:
      favicon:
-        enabled: true   #网站默认图标
+        enabled: false   #网站默认图标
    datasource:          #数据源
      url: jdbc:mysql://localhost:3306/blog?useSSL=false&allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=UTF-8
      username: root
-     password: 123456
+     password: admin1234
      driver-class-name: com.mysql.jdbc.Driver
      type: com.alibaba.druid.pool.DruidDataSource
      dbcp2:
@@ -33,17 +35,19 @@ spring:
         max-idle: 20
         max-total: 20
 server:
-  port: 8000
+  port: 8088
 logging:
-  file: log/site.log
+  file: /Users/guangcai.ji/work/output/blog/log/site.log
 blog:   #自定义属性
-  filePath: D:/var/uploaded_files/
+  filePath: /Users/guangcai.ji/work/output/blog/upload/
   database: blog
-  mysqlExec: D:/mysql/mysql-5.7.16-winx64/bin/mysqldump -uroot -p123456 blog
-  backupPath: D:/blog/backup/
+  mysqlExec: /usr/local/bin/mysqldump -uroot -padmin1234 blog
+  backupPath: /Users/guangcai.ji/work/output/blog/backup/
 ---
 spring:
    profiles: prod
+   thymeleaf:
+     cache: false
    mvc:
        favicon:
          enabled: false
@@ -68,19 +72,15 @@ spring:
        testOnReturn: false
 
 server:
-  port: 8000
-#  ssl:
-#    key-store: classpath:ssl/1534728933823.pfx
-#    key-store-password: 1534728933823
-#    key-store-type: PKCS12
+  port: 8088
 logging:
-  file: /opt/blog/log/site.log
+  file: /home/admin/blog/output/log/site.log
 blog:   #自定义属性
   #图片文件存储路径
-  filePath: /opt/blog/files/
+  filePath: /home/admin/blog/files/
   #数据库名称
   database: blog
   #MYSQL 登录的命令行 /usr/bin/mysqldump -u 用户名 -p 密码（前面路径代表绝对路径）
-  mysqlExec: /usr/bin/mysqldump -uroot -pMysql2018!@#$ blog
+  mysqlExec: /usr/bin/mysqldump -uroot -padmin1234 blog
   #数据库备份文件路径
-  backupPath: /opt/blog/backup/
+  backupPath: /home/admin/blog/backup/

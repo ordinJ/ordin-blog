@@ -4,9 +4,9 @@
 <div th:replace="partial/header::header" ></div>
 <div class="main-content page-page clearfix">
     <div class="search-page">
-        <form id="search" class="search-form" method="post" role="search">
+        <form id="search" class="search-form" method="get" role="search" th:action="@{/search/article}">
             <span class="search-box clearfix">
-                <input type="text" id="search-inp" class="input" required="true" placeholder="Search..." maxlength="30" autocomplete="off">
+                <input type="text" id="search-inp" name="keyword" class="input" required="true" placeholder="Search..." maxlength="30" autocomplete="off">
                 <button type="submit" class="spsubmit">
                     <i class="icon-search"></i>
                 </button>
@@ -22,6 +22,6 @@
         </div>
     </div>
 </div>
-</body>
 <div th:replace="partial/footer::footer" ></div>
+</body>
 </html>
