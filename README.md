@@ -23,9 +23,6 @@ show ：https://www.ordin.top
 ![5](https://note.youdao.com/yws/public/resource/b65d342cf9f6810afb6df8fb2e86a818/xmlnote/8608869DA82146FF9BC068FE4F1E50FC/18811 "在这里输入图片标题")
 
 
-#### 启动
-nohup java -jar  ordin-blog.jar --spring.profiles.active=prod > /dev/null 2>&1 &
-
 #### 其他说明
 
-wiki(待补充...)
+请参考[wiki](https://github.com/ordinJ/ordin-blog/wiki)
