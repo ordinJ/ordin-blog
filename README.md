@@ -1,37 +1,31 @@
-# Site Blog
+# Ordin Blog
 
 #### 项目介绍
 
-> 此项目修改于[Tale](https://gitee.com/biezhi/tale/)，原项目使用了轻量级 mvc 框架 [Blade](https://github.com/biezhi/blade) 开发
+> 此项目修改于[site_blog](https://gitee.com/yangxsa/site_blog),并做了一些定制化修改
 
 #### 修改架构
 
 SpringBoot+Thymeleaf+Mysql+myBatis
 
-演示站点：https://www.mecarserver.xyz/
+show ：https://www.ordin.top
 
-项目的一些说明请看[wiki](https://gitee.com/yangxsa/site_blog/wikis/Home)
+#### 展示
 
-#### 电脑端截图
+![1](https://note.youdao.com/yws/public/resource/b65d342cf9f6810afb6df8fb2e86a818/xmlnote/CEEA6045E79948248D7F21A44EED745B/18801 "在这里输入图片标题")
 
-![1](https://images.gitee.com/uploads/images/2019/0215/153622_76a409d8_1178895.png "在这里输入图片标题")
+![2](https://note.youdao.com/yws/public/resource/b65d342cf9f6810afb6df8fb2e86a818/xmlnote/81DD546E45934C9F9B6E6F6F9A221BAF/18809 "在这里输入图片标题")
 
-![2](https://images.gitee.com/uploads/images/2019/0215/153637_2c73f40e_1178895.png "在这里输入图片标题")
+![3](https://note.youdao.com/yws/public/resource/b65d342cf9f6810afb6df8fb2e86a818/xmlnote/681EC150F1114A1A8A841DA6155E4A1A/18805 "在这里输入图片标题")
 
-![3](https://images.gitee.com/uploads/images/2019/0215/153650_0d7e2ba8_1178895.png "在这里输入图片标题")
+![4](https://note.youdao.com/yws/public/resource/b65d342cf9f6810afb6df8fb2e86a818/xmlnote/D793FDA341CA4B25B5DD12409DCE5739/18807 "在这里输入图片标题")
 
-![4](https://images.gitee.com/uploads/images/2019/0215/153706_010b5e13_1178895.png "在这里输入图片标题")
+![5](https://note.youdao.com/yws/public/resource/b65d342cf9f6810afb6df8fb2e86a818/xmlnote/8608869DA82146FF9BC068FE4F1E50FC/18811 "在这里输入图片标题")
 
-![5](https://images.gitee.com/uploads/images/2019/0215/153735_5c34a812_1178895.png "在这里输入图片标题")
 
-![6](https://images.gitee.com/uploads/images/2019/0215/153756_66b648b1_1178895.png "在这里输入图片标题")
+#### 启动
+nohup java -jar  ordin-blog.jar --spring.profiles.active=prod > /dev/null 2>&1 &
 
-![7](https://images.gitee.com/uploads/images/2019/0215/153808_7cf2a1d6_1178895.png "在这里输入图片标题")
+#### 其他说明
 
-![8](https://www.mecarserver.xyz/files/54869d91-af90-42fc-af65-d8d638c66f42.png "在这里输入图片标题")
-
-#### 手机端截图
-![输入图片说明](https://images.gitee.com/uploads/images/2019/0618/174320_ca1eeda4_1178895.png "企业微信截图_20190618174300.png")
-![输入图片说明](https://images.gitee.com/uploads/images/2019/0618/174404_8e0b4dbe_1178895.png "在这里输入图片标题")
-![输入图片说明](https://images.gitee.com/uploads/images/2019/0618/174433_030fdb6d_1178895.png "企业微信截图_20190618174425.png")
-![输入图片说明](https://images.gitee.com/uploads/images/2019/0618/174503_68e502d2_1178895.png "企业微信截图_20190618174454.png")
+wiki(待补充...)
