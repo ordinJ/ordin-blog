@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.ordin.site</groupId>
+	<groupId>top.ordin</groupId>
 	<artifactId>ordin-blog</artifactId>
 	<version>1.0</version>
 	<packaging>jar</packaging>
@@ -146,7 +146,7 @@
 						<manifest>
 							<addClasspath>true</addClasspath>
 							<classpathPrefix>../lib/</classpathPrefix>
-							<mainClass>com.ordin.Application</mainClass>
+							<mainClass>top.ordin.Application</mainClass>
 						</manifest>
 					</archive>
 				</configuration>
