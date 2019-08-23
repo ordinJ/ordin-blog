@@ -1,6 +1,11 @@
 spring:
   profiles:
     active: local
+
+  servlet:
+    multipart:
+      max-file-size: 10MB
+
 #mybatis配置
 mybatis:
   configuration:
